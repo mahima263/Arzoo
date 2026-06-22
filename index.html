@@ -187,7 +187,7 @@
   .cf .cf-head{text-align:center;max-width:1180px;margin:0 auto 36px;}
   .cf .sec-h{font-size:clamp(2.5rem,6vw,4rem);}
   .cf .cf-lead{color:var(--ink-soft);max-width:62ch;margin:22px auto 0;font-size:1.02rem;}
-  .cf .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch;max-width:none;margin:0 auto;}
+  .cf .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch;max-width:none;margin:0 auto;position:relative;z-index:3;}
   .cf .grid>div{display:flex;}
   .cf .prog-card,.cf .give-card{width:100%;}
   @media(max-width:880px){.cf .grid{grid-template-columns:1fr;gap:28px;}}
@@ -269,8 +269,8 @@
   .dd-list li .ccode{margin-left:auto;font-size:.78rem;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;}
 
   /* contribution info notes */
-  .cf-notes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px auto 0;}
-  .cf-note{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.65);border:1px solid var(--line-soft);border-radius:14px;padding:18px 20px;}
+  .cf-notes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px auto 0;position:relative;z-index:1;}
+  .cf-note{display:flex;align-self:start;align-items:flex-start;gap:14px;background:rgba(255,255,255,.65);border:1px solid var(--line-soft);border-radius:14px;padding:18px 20px;}
   .cf-note .cf-ic{flex:none;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(176,74,46,.1);color:var(--clay);}
   .cf-note .cf-ic svg{width:20px;height:20px;}
   .cf-note p{margin:0;font-size:.9rem;line-height:1.62;color:var(--ink-soft);}
@@ -604,7 +604,7 @@
       </div>
       <div class="cf-note">
         <span class="cf-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg></span>
-        <p><strong>Tax Exemption:</strong> Contributions are eligible for tax exemption under Section 80G of the Income Tax Act.</p>
+        <p><strong>Tax Benefits:</strong> Donations are eligible for tax benefits under Section 80G in India. For alumni based in the US, contributions can be made through the IITK Foundation (USA), a registered 501(c)(3), making them eligible for US tax benefits. Benefits in the UK and Canada may also apply as per local regulations.</p>
       </div>
     </div>
   </div>
