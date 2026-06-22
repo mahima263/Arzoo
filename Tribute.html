@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Memory of Arzoo · Arzoo Katiyar Memorial Fund</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --clay:#B04A2E; --clay-deep:#8F3A20; --maroon:#3A2117; --maroon-deep:#2A1610;
+    --cream:#FAF7F1; --cream-2:#F2ECE2; --ivory:#FFFFFF;
+    --ink:#2B201A; --ink-soft:#6E5D52; --amber:#E6A949;
+    --line:rgba(43,32,26,.16); --line-soft:rgba(43,32,26,.09);
+    --shadow:0 2px 4px rgba(58,33,23,.06), 0 22px 48px -26px rgba(58,33,23,.4);
+    --shadow-lift:0 6px 14px rgba(58,33,23,.08), 0 30px 60px -28px rgba(58,33,23,.5);
+    --pad:40px;
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:17px;line-height:1.78;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:500;color:var(--ink);margin:0;letter-spacing:-.015em;line-height:1.08;}
+  p{margin:0 0 1.05em;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .grain{position:absolute;inset:0;background-image:var(--grain);background-size:140px;opacity:.05;mix-blend-mode:overlay;pointer-events:none;z-index:1;}
+  :focus-visible{outline:2px solid var(--clay);outline-offset:3px;}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(253,251,247,.95);backdrop-filter:saturate(150%) blur(10px);box-shadow:0 1px 0 var(--line-soft);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1180px;margin:0 auto;padding:12px var(--pad);}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand .divider{width:1px;height:36px;background:var(--line);}
+  .brand .titles b{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.04rem;line-height:1.1;color:var(--ink);}
+  .brand .titles small{display:block;font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:2px;}
+  .iitk{display:inline-flex;align-items:center;justify-content:center;flex:none;}
+  .iitk img{height:42px;width:auto;display:block;}
+  .iitk .fb{display:none;}
+  .iitk.nologo img{display:none;}
+  .iitk.nologo .fb{display:flex;align-items:center;justify-content:center;height:42px;width:42px;border-radius:50%;background:var(--maroon);color:var(--amber);font-family:"Fraunces",serif;font-weight:600;font-size:.86rem;border:1.5px solid var(--amber);}
+  .nav-back{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:inline-flex;align-items:center;gap:7px;transition:color .2s;}
+  .nav-back:hover{color:var(--clay);}
+  @media(max-width:560px){.brand .titles small{display:none;}}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Inter",sans-serif;font-weight:600;font-size:.86rem;letter-spacing:.04em;text-transform:uppercase;padding:15px 30px;border-radius:4px;border:1.5px solid transparent;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s;}
+  .btn-clay{background:var(--clay);color:#fff;box-shadow:0 8px 20px -10px rgba(176,74,46,.7);}
+  .btn-clay:hover{background:var(--clay-deep);color:#fff;transform:translateY(-3px);}
+  .btn-outline{background:transparent;border-color:var(--line);color:var(--clay);}
+  .btn-outline:hover{border-color:var(--clay);transform:translateY(-3px);}
+
+  /* READER */
+  .reader{position:relative;padding:64px var(--pad) 80px;overflow:hidden;}
+  .reader .halo{position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:760px;height:520px;background:radial-gradient(circle at 50% 0%,rgba(230,169,73,.16),transparent 62%);pointer-events:none;}
+  .shell{max-width:820px;margin:0 auto;position:relative;z-index:2;}
+
+  .meta{text-align:center;margin-bottom:30px;}
+  .meta .kk{font-family:"Inter",sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--clay);}
+  .meta .count{display:inline-flex;align-items:center;gap:12px;margin-top:14px;font-family:"Inter",sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+  .meta .count i{display:block;width:34px;height:1px;background:var(--line);}
+
+  .card{position:relative;background:#fff;border:1px solid var(--line-soft);border-radius:22px;box-shadow:var(--shadow);padding:56px 64px 48px;overflow:hidden;transition:opacity .32s ease,transform .32s ease;}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--clay),var(--amber));}
+  .card.swap{opacity:0;transform:translateY(12px);}
+  .bigq{font-family:"Fraunces",serif;font-weight:600;font-size:5.5rem;line-height:.7;color:var(--amber);opacity:.55;height:46px;display:block;}
+  .pull{font-family:"Fraunces",serif;font-weight:500;font-style:italic;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.24;color:var(--maroon);letter-spacing:-.015em;margin:18px 0 30px;}
+  .body p{color:var(--ink);font-size:1.08rem;line-height:1.82;margin:0 0 1.15em;}
+  .body p:last-child{margin-bottom:0;}
+  .body p:first-of-type::first-letter{font-family:"Fraunces",serif;font-weight:600;font-size:3.2em;line-height:.72;float:left;margin:8px 14px 0 0;color:var(--clay);}
+
+  .author{display:flex;align-items:center;gap:18px;margin-top:38px;padding-top:30px;border-top:1px solid var(--line-soft);}
+  .author .av{width:62px;height:62px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:var(--cream-2);color:var(--clay-deep);font-family:"Fraunces",serif;font-weight:600;font-size:1.25rem;border:1.5px solid var(--amber);}
+  .author .nm{font-family:"Fraunces",serif;font-weight:600;font-size:1.3rem;color:var(--ink);line-height:1.2;}
+  .author .nm span{display:block;font-family:"Inter",sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;color:var(--ink-soft);margin-top:6px;text-transform:uppercase;}
+  @media(max-width:600px){.card{padding:38px 26px 32px;}.bigq{font-size:4rem;height:34px;}}
+
+  /* PREV / NEXT */
+  .pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;}
+  .pager a{display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid var(--line-soft);border-radius:14px;padding:18px 22px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s;min-width:0;}
+  .pager a:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:var(--line);}
+  .pager .dir{font-family:"Inter",sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);}
+  .pager .pn{font-family:"Fraunces",serif;font-weight:500;font-size:1.05rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .pager .next{text-align:right;align-items:flex-end;}
+  @media(max-width:520px){.pager{grid-template-columns:1fr;}.pager .next{text-align:left;align-items:flex-start;}}
+
+  .reader-cta{text-align:center;margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  /* FOOTER */
+  footer{background:var(--maroon-deep);color:rgba(255,255,255,.6);padding:46px 0 30px;font-size:.86rem;position:relative;overflow:hidden;text-align:center;}
+  footer .grain{opacity:.05;}
+  .foot-brand{display:inline-flex;align-items:center;gap:13px;margin-bottom:12px;position:relative;z-index:2;}
+  .foot-brand b{font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;color:#fff;}
+  .foot-bottom{position:relative;z-index:2;font-size:.78rem;color:rgba(255,255,255,.42);border-top:1px solid rgba(255,255,255,.1);padding-top:18px;margin-top:6px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="iitk"><img src="Images/logo.png" alt="IIT Kanpur" onerror="this.closest('.iitk').classList.add('nologo')"><span class="fb">IITK</span></span>
+      <span class="divider"></span>
+      <span class="titles"><b>Arzoo Katiyar Memorial Fund</b><small>Indian Institute of Technology Kanpur</small></span>
+    </a>
+    <a href="index.html#memories" class="nav-back">← All Memories</a>
+  </div>
+</header>
+
+<section class="reader">
+  <div class="halo" aria-hidden="true"></div>
+  <div class="shell">
+    <div class="meta">
+      <div class="kk">Memories of Arzoo</div>
+      <div class="count"><i></i><span id="counter">Tribute 1 of 13</span><i></i></div>
+    </div>
+
+    <article class="card" id="card">
+      <span class="bigq" aria-hidden="true">“</span>
+      <p class="pull" id="pull"></p>
+      <div class="body" id="body"></div>
+      <div class="author">
+        <span class="av" id="av"></span>
+        <span class="nm" id="nm"></span>
+      </div>
+    </article>
+
+    <nav class="pager">
+      <a href="#" id="prev" class="prev"><span class="dir">← Previous</span><span class="pn" id="prevName"></span></a>
+      <a href="#" id="next" class="next"><span class="dir">Next →</span><span class="pn" id="nextName"></span></a>
+    </nav>
+
+    <div class="reader-cta">
+      <a href="index.html#memories" class="btn btn-outline">View all memories</a>
+      <a href="index.html#contribute" class="btn btn-clay">Carry Forward Her Legacy →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="foot-brand">
+    <span class="iitk"><img src="IITK Logo_White-01 (1).png" alt="IIT Kanpur" style="height:60px;width:auto;" onerror="this.closest('.iitk').classList.add('nologo')"><span class="fb">IITK</span></span>
+    <b>Arzoo Katiyar Memorial Fund</b>
+  </div>
+  <div class="foot-bottom">Indian Institute of Technology Kanpur &nbsp;·&nbsp; © <span id="yr"></span> Arzoo Katiyar Memorial Fund</div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  var DATA=[
+    {id:"shruti-mittal",name:"Shruti Mittal",batch:"Y8489",av:"SM",
+     pull:"She always took great care to never hurt anyone\u2019s feelings.",
+     paras:[
+      `Arzoo \u2014 sincere, hardworking, kind, and caring. She was the perfect example of a good girl, the kind of student every teacher loved, every parent is proud of, someone you could always count on for help, even if you showed up the night before an exam telling her you hadn\u2019t done a single assignment and late nights weren\u2019t your thing! Many people were scared of her intense eyes. I loved how fiercely she stood by the principles she believed in.`,
+      `All this doesn\u2019t mean she didn\u2019t have her fun. She\u2019d tease her friends so innocently that you wouldn\u2019t even realize she was the culprit, she\u2019d flirt endlessly (with her close friends only!), enjoy good old music, and you could hear her laugh from across the hostel! One of our favourite wing traditions was to celebrate her birthday, starting a full week in advance, just to spread chaos and annoy her.`,
+      `Growing up, I realize she was simply more kind and mature than the rest of us. She may be gone too soon, but the time we spent together will forever inspire me to be a little kinder and to spread a bit more love and happiness around.`
+     ]},
+    {id:"akshara-rai",name:"Akshara Rai",batch:"Y8054",av:"AR",
+     pull:"She just made everything and everyone she touched better.",
+     paras:[
+      `Arzoo and I technically had two separate rooms, G301 and G302, but we usually lived in one or the other. Our days started with waking each other up for breakfast, continued through biking to classes, quick lunches, library and labs, and ended with dinner where we were famous for spending several hours at the mess. Then we\u2019d stay up late, studying, watching movies, or just talking the night away. As we grew older, we got more adventurous and walked to the OAT at 2am for late-night snacks. Those were some of the happiest days of my life.`,
+      `Arzoo had this special thing that no matter how much time passed, when we met, it was like no time had passed at all. She was the first person I told any new gossip to, or a new song I liked, or some new \u201Cphilosophy\u201D I had come up with. She could take all my immature rants and somehow make them hilarious, or even wise. She naturally inspired people to strive to be more like her.`,
+      `I cannot think of a wiser, kinder, more considerate and more honest person, who genuinely could see good in everyone, and was also so much fun to be around. She lived every moment fiercely, and fought till the end to protect her friends and family, even from the pain of losing her. If measured in the number of laughs shared, Arzoo lived a longer, fuller life than most. I hope there is a world where she is still laughing, spreading her light, and eating jalebis with friends.`
+     ]},
+    {id:"swati-pathak",name:"Swati Pathak",batch:"Y8525",av:"SP",
+     pull:"She has been the most compassionate friend to me.",
+     paras:[
+      `I have known Arzoo since our days preparing for the JEE. I have fond memories of us commuting together to coaching classes, and I used to visit her home often. She has been the most compassionate friend to me, always helpful and patient with any questions I had. We used to eat poha together cooked by her mom, which made those moments even more special. I deeply admire how kind-hearted and mature a person she was, and I know she will continue to inspire us all.`
+     ]},
+    {id:"saswati-roy",name:"Saswati Roy",batch:"",av:"SR",
+     pull:"To me, she is still smiling at us.",
+     paras:[
+      `Arzoo was kindness and simplicity personified. She was calm, logical and patient for everyone around her. She was a moral compass for a lot of us. And when she had fun, she filled up the room with laughter and joy. The number of times, against her will, we have crashed at her room and made it an adda zone while she was working! My favourite memory of her was waking her up for the mess daily in our 5th year and most days being met with a sleepy Arzoo, begging for 5 more minutes of sleep.`,
+      `I don\u2019t think I will ever come to terms with Arzoo not being there. But I will always remember her smile. To me, she is still smiling at us and in her own way, being kind to us.`
+     ]},
+    {id:"richa-srivastava",name:"Richa Srivastava",batch:"Y8416",av:"RS",
+     pull:"Her kindness continues to change someone\u2019s path, the way it changed mine.",
+     paras:[
+      `I am, and will always be, deeply fond of Arzoo because we quite literally grew up together, through school, coaching, and college. Even at an age when most of us didn\u2019t fully understand what words like empathy and generosity meant, Arzoo lived them. She was brilliant, deeply kind, and unusually mature, yet always fun to be around. She had the best smile, and an infectious energy that made people feel lighter simply by being near her.`,
+      `I will always remember the words of encouragement she gave me at my lowest point, during my drop year preparing for JEE. They stayed with me when I needed strength the most, and they shaped the way I moved forward. I attribute many of the successes that came after to the belief she offered me so freely. This scholarship is a way of carrying that belief forward, so her kindness continues to change someone\u2019s path, the way it changed mine.`
+     ]},
+    {id:"tanya-mendiratta",name:"Tanya Mendiratta",batch:"",av:"TM",
+     pull:"Knowing her made me want to be a better person.",
+     paras:[
+      `When I think of Arzoo, the first thing that comes to mind is her laughter, so infectious, so full of life. You could hear it across the hall or from the other end of the table, and it always made everyone around smile.`,
+      `She was one of the kindest people I knew. Whenever I needed help, whether it was guidance, assignments, or just figuring things out, she was always there without hesitation. What always stood out to me was how simple and genuine Arzoo was. There was such purity in the way she lived. There was also a wisdom in her that\u2019s hard to describe, something about the way she looked at people, as if she could see straight through to their soul.`,
+      `More than anything, knowing her made me want to be a better person, kinder, more patient, and more hardworking. I hope you are smiling and laughing wherever you are, Arzoo.`
+     ]},
+    {id:"ankita-panwar",name:"Ankita Panwar",batch:"",av:"AP",
+     pull:"It was always so nice just to be around her.",
+     paras:[
+      `Arzoo was a happy and calm soul and it was always so nice just to be around her. There have been countless times when she inspired me to be a more authentic, hardworking and simple person, and I am grateful for each moment I got to spend with her.`
+     ]},
+    {id:"ankita-agarwal",name:"Ankita Agarwal",batch:"",av:"AA",
+     pull:"A brilliant mind and a gentle soul.",
+     paras:[
+      `Thinking about Arzoo takes me back to one of our final conversations during the end of fifth year, when we were completing our theses sitting close to each other. She had recently seen a new movie, after which she got extremely worried about leaving her family behind in India as she was moving for higher education outside the country. It felt like she wanted to achieve her dreams but was unwilling to compromise on her dearest people. It took a lot of internal debating for her to finally accept that moving ahead was the right thing, for herself and her dear ones.`,
+      `Her emotions were always sincere towards everything and everyone around her. She was someone who genuinely cared. A brilliant mind and a gentle soul. I admired her back then and even today.`
+     ]},
+    {id:"prajyoti-waghmare",name:"Prajyoti Waghmare",batch:"",av:"PW",
+     pull:"She is one of the most honest persons I have met in my life.",
+     paras:[
+      `Arzoo was my department buddy and one of my closest wingmates. On the outside people found her to be very sincere and strict, but once you got to know her closely, your world would become brighter with her infectious laughter. She loved old, sad, romantic songs. Some songs she introduced me to have become my favourites over time. I remember us cycling around the campus singing those songs.`,
+      `Arzoo was also my partner for most of my department assignments. She was very dedicated and sincere. She refused to take shortcuts and worked hard towards each assignment. She is one of the most honest persons I have met in my life. I miss her every single day and cherish all the memories we spent together.`
+     ]},
+    {id:"hemangini-parmar",name:"Hemangini Parmar",batch:"",av:"HP",
+     pull:"She had the kind of laugh that filled the air.",
+     paras:[
+      `Arzoo was a beautiful and loving soul. I remember her immense focus and dedication, how she was always ready to help everyone. She had the kind of laugh that filled the air, loud enough for the whole block to hear. I hope she can feel, wherever she is, the love and admiration we will always hold for her.`
+     ]},
+    {id:"ankita-mittal",name:"Ankita Mittal",batch:"Y8097",av:"AM",
+     pull:"She had a special way of making everyone feel valued and supported.",
+     paras:[
+      `It\u2019s hard to find the right words for someone who meant so much. Arzoo was my roommate in our first year and my first friend at college. She was one of the kindest, most genuine people I have ever known. She always made time for the people she cared about and had a special way of making everyone feel valued and supported.`,
+      `Some of my most cherished memories are the various trips we shared, all filled with laughter. I still smile remembering how in Coorg an aunty started yelling at her in Kannada when we delayed the bus departure, and in her sweet, positive way she simply said she didn\u2019t understand Kannada, which only led the aunty to start yelling at her in English. I will always be grateful for our friendship and those memories. She will forever hold a special place in my heart.`
+     ]},
+    {id:"sandhya-kumari",name:"Sandhya Kumari",batch:"",av:"SK",
+     pull:"The purest person at heart I have ever met.",
+     paras:[
+      `Arzoo has been the purest person at heart I have ever met. I remember how we became friends in the first interaction and then became dummy roommates too. I was mesmerised by Arzoo\u2019s intelligence and simplicity. The best memories with you were how we used to support and motivate each other for studies and projects.`,
+      `Even after 8 years of college graduation, after becoming a professor, you were the same old close and helpful, and helped to review my master\u2019s thesis. I am still in denial that I can\u2019t talk to you. I know wherever you are, you are smiling and spreading happiness and peace.`
+     ]},
+    {id:"pranay-dighe",name:"Pranay Dighe",batch:"",av:"PD",
+     pull:"She inspired me with her quiet grace.",
+     paras:[
+      `Arzoo was one of the kindest people I remember from my days at IITK. I will always remember her humility, gentle nature, and intellectual curiosity, as well as her humour and quiet mischievousness that only her close friends truly got to see. I will also cherish the memories of our Swiss adventures with her Cornell friends. She inspired me with her quiet grace, and I am sure she inspired people around her wherever she went, be it her friends, peers, students, or professors. May she rest in peace.`
+     ]}
+  ];
+
+  function idxFromUrl(){
+    var p=new URLSearchParams(location.search).get('id');
+    var i=DATA.findIndex(function(d){return d.id===p;});
+    return i<0?0:i;
+  }
+  var cur=idxFromUrl();
+  var card=document.getElementById('card');
+
+  function render(i,animate){
+    var d=DATA[i],N=DATA.length;
+    function paint(){
+      document.getElementById('counter').textContent='Tribute '+(i+1)+' of '+N;
+      document.getElementById('pull').textContent='\u201C'+d.pull+'\u201D';
+      document.getElementById('body').innerHTML=d.paras.map(function(t){return '<p>'+t+'</p>';}).join('');
+      document.getElementById('av').textContent=d.av;
+      document.getElementById('nm').innerHTML=d.name+(d.batch?'<span>'+d.batch+'</span>':'');
+      var prev=DATA[(i-1+N)%N],next=DATA[(i+1)%N];
+      document.getElementById('prevName').textContent=prev.name;
+      document.getElementById('nextName').textContent=next.name;
+      document.title=d.name+' on Arzoo · Memorial Fund';
+      try{history.replaceState(null,'', '?id='+d.id);}catch(e){}
+    }
+    if(animate){
+      card.classList.add('swap');
+      setTimeout(function(){paint();card.classList.remove('swap');},300);
+    }else{paint();}
+  }
+  render(cur,false);
+
+  function go(delta){cur=(cur+delta+DATA.length)%DATA.length;render(cur,true);window.scrollTo({top:0,behavior:'smooth'});}
+  document.getElementById('prev').addEventListener('click',function(e){e.preventDefault();go(-1);});
+  document.getElementById('next').addEventListener('click',function(e){e.preventDefault();go(1);});
+  document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1);});
+</script>
+</body>
+</html>

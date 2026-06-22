@@ -8,9 +8,11 @@
 <!--
   ASSETS — folder "Images" beside this file.
   LOGO: Images/logo.png  (an "IITK" monogram shows until added)
-  PHOTOS: HERO image_1.jpg · A LIFE REMEMBERED image_23.png
-          GALLERY image_1,3,5,7,8,9,11,12,13,14,15,18,19,20,24,25,31,32
+  HERO: Arzoo_Web banner.jpg / Arzoo_Mobile Banner.jpg
+  A LIFE REMEMBERED: Images/image_23.png
+  GALLERY: image_1,5,7,11,12,13,18,20,25,32
   GO LIVE: set DONATE_URL (script) and #progress data-raised (live amount, rupees).
+  FULL TRIBUTES PAGE: tributes.html (linked from "Read all tributes")
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,27 +23,32 @@
 <style>
   :root{
     --clay:#B04A2E; --clay-deep:#8F3A20; --maroon:#3A2117; --maroon-deep:#2A1610;
-    --cream:#F4ECDD; --cream-2:#EFE5D2; --ivory:#FBF7EF;
+    --cream:#FAF7F1; --cream-2:#F2ECE2; --ivory:#FFFFFF;
     --ink:#2B201A; --ink-soft:#6E5D52; --amber:#E6A949;
     --line:rgba(43,32,26,.16); --line-soft:rgba(43,32,26,.09);
     --shadow:0 2px 4px rgba(58,33,23,.06), 0 22px 48px -26px rgba(58,33,23,.4);
     --shadow-lift:0 6px 14px rgba(58,33,23,.08), 0 30px 60px -28px rgba(58,33,23,.5);
-    --maxw:1440px; --pad:48px;
+    --maxw:1600px; --pad:48px; --measure:940px;
     --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:17px;line-height:1.74;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
-  h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:500;color:var(--ink);margin:0;letter-spacing:-.015em;line-height:1.1;}
-  p{margin:0 0 1.1em;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:17px;line-height:1.72;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:500;color:var(--ink);margin:0;letter-spacing:-.015em;line-height:1.08;}
+  p{margin:0 0 1.05em;}
   a{color:inherit;}
   img{display:block;max-width:100%;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);}
-  @media(max-width:640px){:root{--pad:24px;}}
+  @media(max-width:640px){:root{--pad:22px;}}
 
-  .eyebrow{font-family:"Inter",sans-serif;font-weight:600;font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--clay);margin:0 0 18px;display:inline-flex;align-items:center;gap:13px;}
-  .eyebrow::before{content:"";width:26px;height:2px;background:currentColor;opacity:.6;flex:none;}
+  .eyebrow{font-family:"Inter",sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin:0 0 16px;display:inline-flex;align-items:center;gap:11px;}
   .eyebrow.light{color:var(--amber);}
+
+  /* SECTION HEADINGS — bigger, highlighted */
+  .sec-h{font-size:clamp(2.3rem,5vw,3.5rem);line-height:1.02;margin:0;position:relative;}
+  .sec-h .accent{color:var(--clay);}
+  .h-rule{width:64px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:20px 0 0;}
+  .center .h-rule,.sec-h.center + .h-rule{margin-left:auto;margin-right:auto;}
 
   .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Inter",sans-serif;font-weight:600;font-size:.86rem;letter-spacing:.04em;text-transform:uppercase;padding:15px 30px;border-radius:4px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s;}
   .btn-clay{background:var(--clay);color:#fff;box-shadow:0 8px 20px -10px rgba(176,74,46,.7);}
@@ -49,9 +56,10 @@
   .btn-gold{background:var(--amber);color:#3a2606;box-shadow:0 8px 20px -10px rgba(230,169,73,.8);}
   .btn-gold:hover{background:#d99a36;transform:translateY(-3px);}
   .btn-outline{background:transparent;border-color:currentColor;}
-  .btn-outline:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);}
+  .btn-outline:hover{background:rgba(176,74,46,.06);transform:translateY(-3px);}
   .btn-lg{padding:18px 36px;font-size:.92rem;}
   .btn-block{width:100%;justify-content:center;}
+  .btn[disabled]{opacity:.5;pointer-events:none;}
 
   .grain{position:absolute;inset:0;background-image:var(--grain);background-size:140px;opacity:.05;mix-blend-mode:overlay;pointer-events:none;z-index:1;}
 
@@ -70,28 +78,21 @@
 
   /* NAV */
   header.nav{position:sticky;top:0;z-index:60;transition:background .3s,box-shadow .3s;}
-  header.nav.solid{background:rgba(250,247,241,.95);backdrop-filter:saturate(150%) blur(10px);box-shadow:0 1px 0 var(--line-soft);}
+  header.nav.solid{background:rgba(253,251,247,.95);backdrop-filter:saturate(150%) blur(10px);box-shadow:0 1px 0 var(--line-soft);}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);}
   .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
-  .brand .divider{width:1px;height:36px;background:rgba(255,255,255,.35);}
-  header.nav.solid .brand .divider{background:var(--line);}
-  .brand .titles b{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.04rem;line-height:1.1;color:#fff;letter-spacing:-.01em;}
-  .brand .titles small{display:block;font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px;}
-  header.nav.solid .brand .titles b{color:var(--ink);} header.nav.solid .brand .titles small{color:var(--ink-soft);}
-  .nav-links{display:flex;align-items:center;gap:30px;}
-  .nav-links a{position:relative;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.85);transition:color .2s;}
-  header.nav.solid .nav-links a{color:var(--ink-soft);}
+  .brand .divider{width:1px;height:36px;background:var(--line);}
+  .brand .titles b{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.04rem;line-height:1.1;color:var(--ink);letter-spacing:-.01em;}
+  .brand .titles small{display:block;font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:2px;}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{position:relative;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);transition:color .2s;}
   .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--clay);transition:right .25s ease;}
   .nav-links a:not(.btn):hover::after{right:0;}
-  .nav-links a:not(.btn):hover{color:#fff;}
-  header.nav.solid .nav-links a:not(.btn):hover{color:var(--clay);}
-  /* contribute button — always white text, both states (fix) */
+  .nav-links a:not(.btn):hover{color:var(--clay);}
   .nav-links a.btn{color:#fff;}
-  header.nav.solid .nav-links a.btn{color:#fff;}
   .nav-links a.btn:hover{color:#fff;}
   .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;align-items:center;justify-content:center;}
-  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{content:"";display:block;width:24px;height:2px;background:#fff;transition:.25s;}
-  header.nav.solid .nav-toggle span,header.nav.solid .nav-toggle span::before,header.nav.solid .nav-toggle span::after{background:var(--ink);}
+  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{content:"";display:block;width:24px;height:2px;background:var(--ink);transition:.25s;}
   .nav-toggle span::before{position:absolute;margin-top:-7px;} .nav-toggle span::after{position:absolute;margin-top:7px;}
   body.menu-open .nav-toggle span{background:transparent;}
   body.menu-open .nav-toggle span::before{margin-top:0;transform:rotate(45deg);}
@@ -113,169 +114,196 @@
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(230,169,73,.6);}70%{box-shadow:0 0 0 9px rgba(230,169,73,0);}100%{box-shadow:0 0 0 0 rgba(230,169,73,0);}}
   @media(max-width:560px){.float-cta{right:16px;bottom:16px;padding:13px 20px;}}
 
-  /* HERO BANNER — full image, no cropping, no overlay */
+  /* HERO BANNER */
   .hero{position:relative;line-height:0;background:#3a2117;}
   .hero img.banner{display:block;width:100%;height:auto;}
   .hero .banner-fallback{display:none;}
   .hero img.banner.missing{display:none;}
   .hero img.banner.missing + .banner-fallback{display:flex;align-items:center;justify-content:center;min-height:42vw;background:linear-gradient(135deg,#5a3322,#3a2117);color:rgba(255,255,255,.5);font:600 .8rem "Inter",sans-serif;letter-spacing:.16em;text-transform:uppercase;line-height:1.4;text-align:center;padding:24px;}
 
-  /* shared editorial bits */
-  .ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin:42px auto;}
+  .ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin:26px auto;}
   .ornament i{width:7px;height:7px;background:var(--amber);transform:rotate(45deg);flex:none;}
   .ornament span{display:block;height:1px;width:72px;}
   .ornament .l{background:linear-gradient(90deg,transparent,var(--clay));}
   .ornament .r{background:linear-gradient(90deg,var(--clay),transparent);}
-  .drop::first-letter{font-family:"Fraunces",serif;font-weight:600;font-size:3.5em;line-height:.7;float:left;margin:8px 12px 0 0;color:var(--clay);}
+  .drop::first-letter{font-family:"Fraunces",serif;font-weight:600;font-size:3.3em;line-height:.7;float:left;margin:8px 12px 0 0;color:var(--clay);}
 
   /* ABOUT */
-  .about{padding:104px 0;}
-  .about-intro{max-width:1320px;margin:0 auto;text-align:center;}
-  .about .lead{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.28;color:var(--ink);margin:0;letter-spacing:-.01em;}
-  .about-body{max-width:1140px;margin:0 auto;}
-  .about-body p{break-inside:avoid;margin:0 0 1.1em;}
-  .about-body p:last-child{margin-bottom:0;}
-  @media(max-width:860px){.drop::first-letter{font-size:3em;}}
-  @media(max-width:860px){.drop::first-letter{font-size:3em;}}
-
-  /* GOAL */
-  .goal{background:var(--maroon-deep);color:#fff;position:relative;overflow:hidden;}
-  .goal .grain{opacity:.05;}
-  .goal .glow{position:absolute;top:-10%;right:-5%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(230,169,73,.16),transparent 65%);z-index:1;}
-  .goal .wrap{padding:92px var(--pad);position:relative;z-index:2;}
-  .goal .grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
-  .goal .eyebrow{color:var(--amber);}
-  .goal h2{color:#fff;letter-spacing:-.02em;}
-  .goal h2 .big{display:block;font-size:clamp(3rem,7vw,5rem);line-height:.95;color:var(--amber);}
-  .goal h2 .sub{display:block;font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:400;color:#fff;margin-top:6px;letter-spacing:.01em;}
-  .goal .lead{color:rgba(255,255,255,.82);max-width:46ch;margin:18px 0 30px;}
-  .fund-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:44px;backdrop-filter:blur(4px);}
-  .fc-top{display:flex;align-items:center;gap:40px;}
-  .ring{width:180px;height:180px;flex:none;}
-  .ring .ring-bg{fill:none;stroke:rgba(255,255,255,.13);stroke-width:11;}
-  .ring .ring-fg{fill:none;stroke:url(#ringgrad);stroke-width:11;stroke-linecap:round;stroke-dasharray:477.5;stroke-dashoffset:477.5;transition:stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1);}
-  .ring .ring-pct{fill:#fff;font-family:"Fraunces",serif;font-weight:600;font-size:36px;}
-  .ring .ring-sub{fill:rgba(255,255,255,.6);font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:2px;text-transform:uppercase;}
-  .fc-figs .raised{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(2.2rem,4vw,3rem);color:var(--amber);line-height:1;}
-  .fc-figs .ofgoal{color:rgba(255,255,255,.72);font-size:.95rem;margin-top:6px;}
-  .mbar{margin-top:32px;}
-  .mbar .track{height:8px;border-radius:999px;background:rgba(255,255,255,.13);overflow:hidden;}
-  .mbar .fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--clay),var(--amber));transition:width 1.8s cubic-bezier(.22,1,.36,1);}
-  .mbar .ticks{display:flex;justify-content:space-between;margin-top:10px;font-size:.68rem;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.45);}
-  @media(max-width:880px){.goal .grid{grid-template-columns:1fr;gap:36px;}.fund-card{padding:32px;}.fc-top{gap:24px;}.ring{width:140px;height:140px;}}
-  @media(max-width:420px){.fc-top{flex-direction:column;text-align:center;align-items:center;}}
+  .about{padding:58px 0;}
+  .about-intro{max-width:1440px;margin:0 auto;text-align:center;}
+  .about .sec-h{margin-bottom:0;}
+  .about .h-rule{margin:20px auto 0;}
+  .about .lead{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(1.5rem,2.7vw,2.15rem);line-height:1.3;color:var(--ink);margin:28px auto 0;letter-spacing:-.01em;max-width:1360px;}
+  .about-body{max-width:1280px;margin:38px auto 0;}
+  .about-body p{margin:0;color:var(--ink);}
+  @media(max-width:860px){.drop::first-letter{font-size:2.9em;}}
 
   /* A LIFE REMEMBERED */
-  .life{background:var(--cream-2);padding:104px 0;}
-  .life .top{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px;align-items:center;}
+  .life{padding:58px 0;}
+  .life .top{display:grid;grid-template-columns:.78fr 1.22fr;gap:56px;align-items:center;max-width:1340px;margin:0 auto;}
   .life .frame{aspect-ratio:4/5;box-shadow:var(--shadow);}
-  .life h2{font-size:clamp(2.2rem,4.4vw,3.2rem);margin-bottom:6px;line-height:1.02;}
-  .life h2 .dates{display:block;font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:clamp(1rem,1.8vw,1.3rem);color:var(--ink-soft);letter-spacing:0;margin-top:10px;}
-  .life .hr{width:54px;height:2px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:18px 0 24px;}
-  .life .top p{color:var(--ink);margin:0 0 1.1em;max-width:62ch;}
+  .life h2{font-size:clamp(2.1rem,4.2vw,3rem);margin-bottom:6px;line-height:1.02;}
+  .life h2 .dates{display:block;font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:clamp(1rem,1.8vw,1.25rem);color:var(--ink-soft);letter-spacing:0;margin-top:10px;}
+  .life .hr{width:54px;height:2px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:18px 0 22px;}
+  .life .top p{color:var(--ink);margin:0 0 1.05em;}
   .life .top p:last-child{margin-bottom:0;}
-  .life .more{max-width:1240px;margin:66px auto 0;text-align:center;}
-  .life .turn{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.5rem,3vw,2.25rem);color:var(--maroon);line-height:1.18;margin:0 0 32px;max-width:none;}
-  .life .turn::before{content:"";display:block;width:54px;height:2px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:0 auto 30px;}
-  .life .warm{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(1.18rem,2.2vw,1.45rem);line-height:1.55;color:var(--clay-deep);background:var(--ivory);border-radius:16px;padding:40px 56px;box-shadow:var(--shadow);text-align:left;margin:0 auto 30px;max-width:1140px;position:relative;}
-  .life .close{color:var(--ink-soft);max-width:none;margin:0 auto;}
-  @media(max-width:860px){.life .top{grid-template-columns:1fr;gap:28px;}.life .frame{aspect-ratio:5/4;}.life .warm{padding:28px 26px;}}
+  .life .more{max-width:1240px;margin:40px auto 0;text-align:center;}
+  .life .turn{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.45rem,2.8vw,2.05rem);color:var(--maroon);line-height:1.18;margin:0 0 24px;}
+  .life .turn::before{content:"";display:block;width:54px;height:2px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:0 auto 22px;}
+  .life .warm{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(1.15rem,2.1vw,1.4rem);line-height:1.55;color:var(--clay-deep);background:var(--ivory);border-radius:16px;padding:34px 46px;box-shadow:var(--shadow);text-align:left;margin:0 auto 26px;max-width:1140px;position:relative;}
+  /* IMPORTANT closing line — was faded/disclaimer-like, now a clear statement */
+  .life .close{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.35rem,2.6vw,1.85rem);line-height:1.35;color:var(--maroon);max-width:1080px;margin:0 auto;letter-spacing:-.01em;}
+  .life .close .em{color:var(--clay);font-style:italic;}
+  @media(max-width:860px){.life .top{grid-template-columns:1fr;gap:26px;}.life .frame{aspect-ratio:5/4;}.life .warm{padding:26px 24px;}}
 
   /* GRANT */
-  .grant{background:var(--cream);padding:100px 0;}
-  .grant .head{max-width:1240px;margin:0 auto 56px;text-align:center;}
-  .grant h2{font-size:clamp(2rem,4.4vw,3rem);margin-bottom:22px;}
-  .grant .glead{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:1.3;color:var(--ink);max-width:1140px;margin:0 auto;letter-spacing:-.01em;}
-  .grant .gbody{max-width:1140px;margin:26px auto 0;color:var(--ink-soft);font-size:1.02rem;line-height:1.72;}
-  @media(max-width:860px){.grant .gbody{margin-top:22px;}}
-  .grant .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-  .gcard{background:var(--ivory);border:1px solid var(--line-soft);border-radius:14px;padding:38px 34px;position:relative;transition:transform .28s ease,box-shadow .28s ease;overflow:hidden;}
+  .grant{padding:58px 0;}
+  .grant .head{max-width:1280px;margin:0 auto 40px;text-align:center;}
+  .grant .sec-h{margin-bottom:24px;}
+  /* important para — promoted to lead */
+  .grant .glead{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(1.3rem,2.3vw,1.75rem);line-height:1.34;color:var(--ink);max-width:1180px;margin:0 auto;letter-spacing:-.01em;}
+  /* de-emphasised supporting line */
+  .grant .gsupport{font-family:"Inter",sans-serif;font-size:.96rem;line-height:1.62;color:var(--ink-soft);max-width:1040px;margin:22px auto 0;}
+  .grant .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:none;margin:0 auto;}
+  .gcard{background:var(--ivory);border:1px solid var(--line-soft);border-radius:14px;padding:34px 30px;position:relative;transition:transform .28s ease,box-shadow .28s ease;overflow:hidden;}
   .gcard::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--clay);transition:width .35s ease;}
   .gcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
   .gcard:hover::before{width:100%;}
-  .gcard .badge{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(176,74,46,.1);color:var(--clay);margin-bottom:18px;}
-  .gcard .badge svg{width:27px;height:27px;}
-  .gcard h3{font-size:1.3rem;margin-bottom:6px;}
-  .gcard .k{font-size:.9rem;color:var(--ink-soft);margin-bottom:14px;}
+  .gcard .badge{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(176,74,46,.1);color:var(--clay);margin-bottom:16px;}
+  .gcard .badge svg{width:26px;height:26px;}
+  .gcard h3{font-size:1.26rem;margin-bottom:6px;}
+  .gcard .k{font-size:.9rem;color:var(--ink-soft);margin-bottom:13px;}
   .gcard ul{list-style:none;margin:0;padding:0;}
-  .gcard li{position:relative;padding:9px 0 9px 22px;color:var(--ink);font-size:.95rem;line-height:1.5;border-bottom:1px solid var(--line-soft);}
+  .gcard li{position:relative;padding:9px 0 9px 22px;color:var(--ink);font-size:.94rem;line-height:1.5;border-bottom:1px solid var(--line-soft);}
   .gcard li:last-child{border-bottom:none;}
   .gcard li::before{content:"";position:absolute;left:0;top:16px;width:7px;height:7px;border-radius:50%;background:var(--amber);}
-  .gcard .note{font-size:.86rem;color:var(--ink-soft);margin:14px 0 0;font-style:italic;}
-  @media(max-width:880px){.grant .cols{grid-template-columns:1fr;gap:18px;}}
+  .gcard .note{font-size:.85rem;color:var(--ink-soft);margin:14px 0 0;font-style:italic;}
+  @media(max-width:880px){.grant .cols{grid-template-columns:1fr;gap:16px;}}
 
-  /* IMPACT BAND */
-  .impact{background:var(--clay);color:#fff;position:relative;overflow:hidden;}
-  .impact .grain{opacity:.07;}
-  .impact .wrap{padding:90px var(--pad);position:relative;z-index:2;}
-  .impact .eyebrow{color:#fff;opacity:.85;}
-  .impact .grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start;}
-  .impact .lead{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.3;color:#fff;margin:0;position:relative;padding-top:28px;}
-  .impact .lead::before{content:"";position:absolute;top:0;left:0;width:54px;height:2px;background:var(--amber);}
-  .impact .stack p{color:rgba(255,255,255,.92);margin:0;}
-  .impact .stack p + p{margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.2);}
-  @media(max-width:820px){.impact .grid2{grid-template-columns:1fr;gap:30px;}}
+  /* CARRY FORWARD (contribute) */
+  .cf{background:linear-gradient(180deg,#FCFAF6 0%,#F2ECE2 100%);color:var(--ink);position:relative;overflow:hidden;}
+  .cf .grain{opacity:.04;}
+  .cf .wrap{padding:60px var(--pad);position:relative;z-index:2;}
+  .cf .cf-head{text-align:center;max-width:1180px;margin:0 auto 36px;}
+  .cf .sec-h{font-size:clamp(2.5rem,6vw,4rem);}
+  .cf .cf-lead{color:var(--ink-soft);max-width:62ch;margin:22px auto 0;font-size:1.02rem;}
+  .cf .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch;max-width:none;margin:0 auto;}
+  .cf .grid>div{display:flex;}
+  .cf .prog-card,.cf .give-card{width:100%;}
+  @media(max-width:880px){.cf .grid{grid-template-columns:1fr;gap:28px;}}
 
-  /* CARRY FORWARD */
-  .cf{background:var(--maroon);color:#fff;position:relative;overflow:hidden;}
-  .cf .grain{opacity:.06;}
-  .cf .glow{position:absolute;top:-20%;left:-6%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(230,169,73,.2),transparent 65%);z-index:1;}
-  .cf .wrap{padding:96px var(--pad);position:relative;z-index:2;}
-  .cf .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center;}
-  .cf .eyebrow{color:var(--amber);}
-  .cf h2{color:#fff;font-size:clamp(2.1rem,5vw,3.4rem);margin-bottom:22px;max-width:16ch;}
-  .cf p{color:rgba(255,255,255,.88);max-width:54ch;margin:0 0 1em;}
-  .give-card{background:var(--ivory);color:var(--ink);border-radius:18px;padding:42px;box-shadow:var(--shadow);}
-  .give-card .gc-k{font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:18px;}
-  .give-card .amounts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-  .give-card .amt{font:600 .98rem "Inter",sans-serif;padding:15px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:.2s;text-align:center;}
-  .give-card .amt:hover{border-color:var(--clay);transform:translateY(-2px);}
-  .give-card .amt.sel{background:var(--clay);color:#fff;border-color:var(--clay);}
-  .give-card .amt.other{grid-column:1 / -1;}
-  .other-wrap{margin:12px 0 0;}
-  .other-wrap[hidden]{display:none;}
-  .other-wrap label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
-  .other-wrap .field{display:flex;align-items:center;border:1.5px solid var(--clay);border-radius:8px;background:#fff;overflow:hidden;}
-  .other-wrap .field span{padding:0 0 0 16px;font-weight:700;color:var(--ink);}
-  .other-wrap input{flex:1;border:none;outline:none;padding:14px 16px;font:600 1rem "Inter",sans-serif;color:var(--ink);background:transparent;}
-  .give-card .btn{margin-top:20px;}
-  @media(max-width:880px){.cf .grid{grid-template-columns:1fr;gap:40px;}.give-card{padding:32px;}}
+  /* progress card — now carries the goal headline */
+  .prog-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line-soft);border-radius:20px;padding:34px 34px 36px;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+  .prog-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--clay),var(--amber));}
+  .goal-banner{text-align:center;padding:6px 0 26px;border-bottom:1px solid var(--line-soft);margin-bottom:26px;}
+  .goal-banner .gb-k{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);margin:0 0 10px;}
+  .goal-banner .gb-fig{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(3rem,7vw,4.4rem);line-height:.92;letter-spacing:-.02em;background:linear-gradient(100deg,var(--clay-deep) 28%,var(--amber) 50%,var(--clay-deep) 72%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--clay);animation:shine 5s linear infinite;}
+  @keyframes shine{to{background-position:-220% center;}}
+  .goal-banner .gb-sub{display:inline-block;font-family:"Inter",sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);background:rgba(230,169,73,.18);border:1px solid rgba(230,169,73,.5);padding:6px 16px;border-radius:999px;margin-top:14px;}
+  .prog-card .pc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px;}
+  .prog-card .pc-k{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin:0;}
+  .prog-card .pc-pill{font-size:.74rem;font-weight:700;letter-spacing:.04em;color:var(--clay-deep);background:rgba(176,74,46,.09);border:1px solid rgba(176,74,46,.18);padding:6px 13px;border-radius:999px;white-space:nowrap;}
+  .prog-card .pc-top{display:flex;align-items:center;gap:28px;}
+  .prog-card .ring{width:148px;height:148px;flex:none;}
+  .prog-card .ring-bg{fill:none;stroke:rgba(43,32,26,.08);stroke-width:12;}
+  .prog-card .ring-fg{fill:none;stroke:url(#ringgrad);stroke-width:12;stroke-linecap:round;stroke-dasharray:477.5;stroke-dashoffset:477.5;transition:stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1);}
+  .prog-card .ring-pct{fill:var(--ink);font-family:"Fraunces",serif;font-weight:600;font-size:34px;}
+  .prog-card .ring-sub{fill:var(--ink-soft);font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:2px;text-transform:uppercase;}
+  .prog-card .pc-figs .raised{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(2rem,3.8vw,2.6rem);color:var(--clay);line-height:1;}
+  .prog-card .pc-figs .ofgoal{color:var(--ink-soft);font-size:.94rem;margin-top:10px;line-height:1.5;}
+  .prog-card .pc-figs .ofgoal strong{color:var(--ink);}
+  .prog-card .mbar{margin-top:26px;}
+  .prog-card .mbar .track{height:10px;border-radius:999px;background:rgba(43,32,26,.08);overflow:hidden;}
+  .prog-card .mbar .fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--clay),var(--amber));box-shadow:0 1px 8px rgba(230,169,73,.55);transition:width 1.8s cubic-bezier(.22,1,.36,1);}
+  .prog-card .mbar .ticks{display:flex;justify-content:space-between;margin-top:12px;font-size:.68rem;font-weight:600;letter-spacing:.04em;color:var(--ink-soft);}
+  @media(max-width:420px){.prog-card .pc-top{flex-direction:column;text-align:center;align-items:center;}.prog-card .pc-head{flex-direction:column;align-items:flex-start;gap:10px;}}
+
+  /* CONTRIBUTION FORM (multi-step) */
+  .give-card{background:#fff;color:var(--ink);border-radius:20px;padding:38px 36px;box-shadow:var(--shadow);border:1px solid var(--line-soft);display:flex;flex-direction:column;}
+  .give-card .form-head{text-align:center;margin-bottom:24px;}
+  .give-card .form-head .gc-k{display:inline-block;font:700 .98rem "Inter",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--clay);padding:9px 22px;border-radius:999px;box-shadow:0 8px 18px -10px rgba(176,74,46,.8);}
+  .give-card .steps{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;}
+  .give-card .steps .dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 .82rem "Inter",sans-serif;background:var(--cream-2);color:var(--ink-soft);border:1.5px solid var(--line);transition:.25s;}
+  .give-card .steps .dot.on{background:var(--clay);color:#fff;border-color:var(--clay);}
+  .give-card .steps .sline{width:34px;height:2px;background:var(--line);}
+  .give-card .steps .sline.on{background:var(--clay);}
+
+  .give-card .step{flex:1;display:flex;flex-direction:column;}
+  .give-card .step[hidden]{display:none !important;}
+  .fld-label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin:0 0 9px;}
+  .give-card .step + .step,.give-card .field + .fld-label,.give-card .dropdown + .fld-label,.give-card .seg + .fld-label{margin-top:18px;}
+  .req{color:var(--clay);}
+  .field{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:8px;background:#fff;overflow:hidden;transition:border-color .2s;}
+  .field:focus-within{border-color:var(--clay);}
+  .field .cur{padding:0 0 0 16px;font-weight:700;color:var(--ink);min-width:40px;}
+  .field input{flex:1;border:none;outline:none;padding:15px 16px;font:600 1rem "Inter",sans-serif;color:var(--ink);background:transparent;width:100%;}
+  .field.full input{padding-left:16px;}
+  .err{display:none;color:var(--clay-deep);font-size:.78rem;font-weight:600;margin:7px 0 0;}
+  .err.show{display:block;}
+
+  .seg{display:inline-flex;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;}
+  .seg button{appearance:none;border:none;background:#fff;color:var(--ink-soft);font:700 .86rem "Inter",sans-serif;letter-spacing:.04em;padding:11px 26px;cursor:pointer;transition:.2s;}
+  .seg button + button{border-left:1.5px solid var(--line);}
+  .seg button.on{background:var(--clay);color:#fff;}
+
+  .form-actions{display:flex;gap:12px;margin-top:auto;padding-top:26px;}
+  .form-actions .btn{flex:1;}
+
+  /* country dropdown */
+  .dropdown{position:relative;}
+  .dd-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:14px 16px;font:600 1rem "Inter",sans-serif;color:var(--ink);cursor:pointer;transition:border-color .2s;}
+  .dd-btn:hover{border-color:var(--clay);}
+  .dropdown.open .dd-btn{border-color:var(--clay);}
+  .dd-val{display:flex;align-items:center;gap:11px;}
+  .flag{font-size:1.2rem;line-height:1;}
+  .dd-caret{color:var(--clay);font-size:.8rem;transition:transform .22s ease;}
+  .dropdown.open .dd-caret{transform:rotate(180deg);}
+  .dd-list{position:absolute;left:0;right:0;top:calc(100% + 8px);margin:0;padding:6px;list-style:none;background:#fff;border:1.5px solid var(--line);border-radius:12px;box-shadow:var(--shadow-lift);max-height:280px;overflow:auto;z-index:30;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .2s ease,transform .2s ease;}
+  .dropdown.open .dd-list{opacity:1;transform:none;pointer-events:auto;}
+  .dd-list li{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:8px;cursor:pointer;font-weight:500;font-size:.98rem;color:var(--ink);transition:background .15s;}
+  .dd-list li + li{border-top:1px solid var(--line-soft);}
+  .dd-list li:hover{background:var(--cream);}
+  .dd-list li[aria-selected="true"]{background:var(--cream-2);}
+  .dd-list li .ccode{margin-left:auto;font-size:.78rem;font-weight:700;color:var(--ink-soft);letter-spacing:.05em;}
 
   /* MEMORIES */
-  .mem{background:var(--cream);padding:100px 0;}
-  .mem .head{text-align:center;max-width:1320px;margin:0 auto 56px;}
-  .mem h2{font-size:clamp(2rem,4.6vw,3rem);margin-bottom:18px;}
-  .mem .head p{color:var(--ink-soft);font-size:1.02rem;}
-  .mgrid{columns:2;column-gap:30px;}
-  @media(max-width:760px){.mgrid{columns:1;}}
-  .mgrid:not(.show-all) .extra{display:none;}
-  .mcard{break-inside:avoid;position:relative;background:#fff;border:1px solid var(--line-soft);border-radius:16px;padding:32px 36px 26px 40px;margin:0 0 30px;transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease;}
-  .mcard::before{content:"";position:absolute;left:0;top:26px;bottom:26px;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--clay),var(--amber));opacity:.45;transition:opacity .3s;}
-  .mcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);border-color:var(--line);}
+  .mem{padding:58px 0;}
+  .mem .head{text-align:center;max-width:1180px;margin:0 auto 26px;}
+  .mem .head p{color:var(--ink-soft);font-size:1.02rem;margin-top:14px;}
+  .mem .tools{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 32px;flex-wrap:wrap;}
+  .mem .tools .btn{padding:13px 24px;}
+  .shuffle-ic{display:inline-block;transition:transform .5s cubic-bezier(.22,1,.36,1);}
+  .shuffling .shuffle-ic{transform:rotate(360deg);}
+  .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:880px){.mgrid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.mgrid{grid-template-columns:1fr;}}
+  .mcard{position:relative;background:#fff;border:1px solid var(--line-soft);border-radius:16px;padding:30px 30px 26px;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s,opacity .3s;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;cursor:pointer;}
+  .mcard .read-more{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font:700 .73rem "Inter",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);}
+  .mcard .read-more em{font-style:normal;transition:transform .25s ease;}
+  .mcard:hover .read-more em{transform:translateX(5px);}
+  .mcard::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,var(--clay),var(--amber));opacity:.55;transition:opacity .3s;}
+  .mcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift);border-color:var(--line);}
   .mcard:hover::before{opacity:1;}
-  .mcard .qm{display:block;font-family:"Fraunces",serif;font-size:2.2rem;line-height:0;height:14px;color:var(--amber);margin:6px 0 18px;}
-  .mcard .h{font-family:"Fraunces",serif;font-weight:500;font-style:italic;font-size:1.28rem;line-height:1.34;color:var(--maroon);margin:0 0 14px;}
-  .mcard .b{font-size:.96rem;color:var(--ink-soft);line-height:1.7;margin:0 0 22px;}
-  .mcard .who{display:flex;align-items:center;gap:14px;border-top:1px solid var(--line-soft);padding-top:18px;}
-  .mcard .who .av{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:var(--cream-2);color:var(--clay-deep);font-family:"Fraunces",serif;font-weight:600;font-size:.92rem;border:1.5px solid var(--amber);}
-  .mcard .who .nm{font-weight:700;font-size:.94rem;color:var(--ink);line-height:1.2;}
-  .mcard .who .nm span{display:block;font-weight:600;font-size:.72rem;letter-spacing:.08em;color:var(--ink-soft);margin-top:3px;text-transform:uppercase;}
-  .mem .actions{text-align:center;margin-top:30px;}
+  .mcard.fade{opacity:0;transform:translateY(10px);}
+  .mcard .qm{display:block;font-family:"Fraunces",serif;font-size:2.4rem;line-height:0;height:20px;color:var(--amber);margin:8px 0 16px;}
+  .mcard .h{font-family:"Fraunces",serif;font-weight:500;font-style:italic;font-size:1.22rem;line-height:1.32;color:var(--maroon);margin:0 0 13px;}
+  .mcard .b{font-size:.94rem;color:var(--ink-soft);line-height:1.66;margin:0 0 20px;flex:1;}
+  .mcard .who{display:flex;align-items:center;gap:13px;border-top:1px solid var(--line-soft);padding-top:16px;}
+  .mcard .who .av{width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:var(--cream-2);color:var(--clay-deep);font-family:"Fraunces",serif;font-weight:600;font-size:.9rem;border:1.5px solid var(--amber);}
+  .mcard .who .nm{font-weight:700;font-size:.92rem;color:var(--ink);line-height:1.2;}
+  .mcard .who .nm span{display:block;font-weight:600;font-size:.7rem;letter-spacing:.08em;color:var(--ink-soft);margin-top:3px;text-transform:uppercase;}
 
-  /* GALLERY — curated mosaic */
-  .gallery{background:var(--maroon);padding:96px 0;position:relative;overflow:hidden;}
-  .gallery .grain{opacity:.06;}
+  /* GALLERY — unchanged */
+  .gallery{background:radial-gradient(150% 80% at 50% -12%, #FFFFFF 0%, var(--cream) 62%);padding:58px 0;position:relative;overflow:hidden;}
+  .gallery .grain{opacity:.04;}
   .gallery .wrap{position:relative;z-index:2;}
-  .gallery .head{text-align:center;max-width:720px;margin:0 auto;}
-  .gallery .eyebrow{color:var(--amber);}
-  .gallery .head p{color:rgba(255,255,255,.82);}
-  .gallery .ornament{margin:30px auto 44px;}
-  .gallery .ornament .l{background:linear-gradient(90deg,transparent,var(--amber));}
-  .gallery .ornament .r{background:linear-gradient(90deg,var(--amber),transparent);}
+  .gallery .head{text-align:center;max-width:1180px;margin:0 auto;}
+  .gallery .head p{color:var(--ink-soft);margin-top:14px;}
+  .gallery .ornament{margin:24px auto 34px;}
   .gmosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px;grid-auto-flow:dense;}
-  .gitem{position:relative;overflow:hidden;border-radius:12px;cursor:zoom-in;background:linear-gradient(135deg,#5a3322,#3a2117);box-shadow:0 18px 38px -24px rgba(0,0,0,.75);}
+  .gitem{position:relative;overflow:hidden;border-radius:12px;cursor:zoom-in;background:linear-gradient(135deg,#e7d9c1,#e3cbb3);border:1px solid var(--line-soft);box-shadow:0 2px 4px rgba(58,33,23,.05),0 18px 36px -26px rgba(58,33,23,.5);}
   .gitem img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.22,1,.36,1);}
-  .gitem::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 50%,rgba(18,7,4,.45));opacity:0;transition:opacity .35s;pointer-events:none;}
+  .gitem::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 55%,rgba(58,33,23,.28));opacity:0;transition:opacity .35s;pointer-events:none;}
   .gitem:hover img{transform:scale(1.08);}
   .gitem:hover::after{opacity:1;}
   .gitem.big{grid-column:span 2;grid-row:span 2;}
@@ -288,17 +316,17 @@
   @media(max-width:430px){.gmosaic{grid-auto-rows:135px;}}
 
   /* FOOTER */
-  footer{background:var(--maroon-deep);color:rgba(255,255,255,.62);padding:60px 0 36px;font-size:.88rem;position:relative;overflow:hidden;}
+  footer{background:var(--maroon-deep);color:rgba(255,255,255,.62);padding:56px 0 32px;font-size:.88rem;position:relative;overflow:hidden;}
   footer .grain{opacity:.05;}
-  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;position:relative;z-index:2;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:34px;}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;position:relative;z-index:2;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:32px;}
   .foot-brand{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
   .foot-brand b{font-family:"Fraunces",serif;font-weight:600;font-size:1.1rem;color:#fff;}
-  .foot-about p{max-width:48ch;line-height:1.6;margin:0 0 16px;font-style:italic;}
-  .foot-col h4{font-family:"Inter",sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;}
+  .foot-about p{max-width:46ch;line-height:1.6;margin:0 0 16px;font-style:italic;}
+  .foot-col h4{font-family:"Inter",sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
   .foot-col a{display:block;color:rgba(255,255,255,.72);text-decoration:none;padding:5px 0;transition:color .2s;}
   .foot-col a:hover{color:var(--amber);}
-  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.78rem;color:rgba(255,255,255,.42);padding-top:22px;position:relative;z-index:2;}
-  @media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px;}}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.78rem;color:rgba(255,255,255,.42);padding-top:20px;position:relative;z-index:2;}
+  @media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr;gap:30px;}}
   @media(max-width:520px){.foot-grid{grid-template-columns:1fr;}}
 
   /* LIGHTBOX */
@@ -308,31 +336,38 @@
   .lb-close{position:absolute;top:22px;right:26px;width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;transition:.2s;}
   .lb-close:hover{background:rgba(255,255,255,.12);}
 
-  [data-aos]{pointer-events:auto;}
   :focus-visible{outline:2px solid var(--clay);outline-offset:3px;}
 
-  /* ===== premium polish ===== */
   #readbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--clay),var(--amber));z-index:80;box-shadow:0 0 12px rgba(230,169,73,.55);transition:width .08s linear;}
 
-  /* warmer, layered backgrounds for light sections */
-  .about{background:radial-gradient(150% 80% at 50% -15%, #FBF4E7 0%, var(--cream) 60%);}
-  .grant{background:radial-gradient(150% 80% at 50% -15%, #FBF4E7 0%, var(--cream) 60%);}
-  .mem{background:radial-gradient(150% 80% at 50% -10%, #FBF4E7 0%, var(--cream) 62%);}
-  .life{background:linear-gradient(180deg,#F1E7D4 0%,#E7DBC4 100%);}
+  .about{background:radial-gradient(150% 80% at 50% -15%, #FFFFFF 0%, var(--cream) 62%);}
+  .grant{background:radial-gradient(150% 80% at 50% -15%, #FFFFFF 0%, var(--cream) 62%);}
+  .mem{background:radial-gradient(150% 80% at 50% -10%, #FFFFFF 0%, var(--cream) 64%);}
+  .life{background:linear-gradient(180deg,#F7F2EA 0%,#EFE8DC 100%);}
 
-  /* soft depth at the top edge of dark sections (eases the transition) */
-  .goal::after,.cf::after,.gallery::after{content:"";position:absolute;top:0;left:0;right:0;height:160px;background:linear-gradient(180deg,rgba(12,5,3,.28),transparent);z-index:1;pointer-events:none;}
-  .impact::after{content:"";position:absolute;top:0;left:0;right:0;height:130px;background:linear-gradient(180deg,rgba(120,44,24,.4),transparent);z-index:1;pointer-events:none;}
-  .goal .wrap,.cf .wrap,.gallery .wrap,.impact .wrap{z-index:2;}
+  .about,.life,.grant,.mem,.gallery{position:relative;}
+  .about::before,.life::before,.grant::before,.mem::before,.gallery::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1600px,100%);height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);}
 
-  /* hairline gold seam between major sections */
-  .about,.life,.grant,.mem{position:relative;}
-  .about::before,.life::before,.grant::before,.mem::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1440px,100%);height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);}
+  /* light-sweep sheen on hover */
+  .gcard::after,.mcard::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(115deg,transparent 42%,rgba(230,169,73,.22) 50%,transparent 58%);transform:translateX(-130%);transition:transform .8s cubic-bezier(.22,1,.36,1);pointer-events:none;z-index:3;}
+  .gcard:hover::after,.mcard:hover::after{transform:translateX(130%);}
 
-  /* parallax layers */
-  .glow{will-change:transform;}
-  @media(prefers-reduced-motion:reduce){.hero .bg img,.glow{transform:none !important;}}
+  /* memory cards stagger in (also replays on shuffle) */
+  @keyframes cardIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .mgrid .mcard{animation:cardIn .55s cubic-bezier(.22,1,.36,1) both;}
+  .mgrid .mcard:nth-child(1){animation-delay:.04s;}
+  .mgrid .mcard:nth-child(2){animation-delay:.10s;}
+  .mgrid .mcard:nth-child(3){animation-delay:.16s;}
+  .mgrid .mcard:nth-child(4){animation-delay:.22s;}
+  .mgrid .mcard:nth-child(5){animation-delay:.28s;}
+  .mgrid .mcard:nth-child(6){animation-delay:.34s;}
 
+  @media(prefers-reduced-motion:reduce){
+    .shuffle-ic,.mcard{transition:none !important;}
+    .goal-banner .gb-fig{animation:none;}
+    .mgrid .mcard{animation:none;}
+    .gcard::after,.mcard::after{display:none;}
+  }
 </style>
 </head>
 <body>
@@ -370,47 +405,14 @@
 <section class="about" id="about">
   <div class="wrap">
     <div class="about-intro">
-      <span class="eyebrow" data-aos="fade-up">About the Fund</span>
-      <p class="lead" data-aos="fade-up">The Arzoo Katiyar Memorial Fund has been created to honour the life, values, and legacy of Arzoo Katiyar, a deeply compassionate human being whose impact continues to live on through the people she touched.</p>
+      <h2 class="sec-h center" data-aos="fade-up">About <span class="accent">the Fund</span></h2>
+      <div class="h-rule" aria-hidden="true" data-aos="fade-up"></div>
+      <p class="lead" data-aos="fade-up">The Arzoo Katiyar Memorial Fund has been created to honour the life, values, and legacy of Arzoo Katiyar — a deeply compassionate human being whose impact continues to live on through the people she touched.</p>
     </div>
-    <div class="ornament" data-aos="fade-up" aria-hidden="true"><span class="l"></span><i></i><span class="r"></span></div>
     <div class="about-body" data-aos="fade-up">
-      <p class="drop">Arzoo believed deeply in sincerity, intellectual honesty, hard work, and kindness. Whether in classrooms, research labs, hostel corridors, she brought warmth, clarity, and quiet strength into every space she occupied. This fund seeks to carry that spirit forward by supporting students at IIT Kanpur, especially young researchers striving to explore, present, and contribute to the global academic community.</p>
-      <p>More than a memorial, this initiative is a continuation of everything Arzoo stood for: curiosity, generosity, excellence, humility, and care for others.</p>
+      <p class="drop">Arzoo believed deeply in sincerity, intellectual honesty, hard work, and kindness. Whether in classrooms, research labs, or hostel corridors, she brought warmth, clarity, and quiet strength into every space she occupied. This fund seeks to carry that spirit forward by supporting students at IIT Kanpur, especially young researchers striving to explore, present, and contribute to the global academic community. More than a memorial, this initiative is a continuation of everything Arzoo stood for: curiosity, generosity, excellence, humility, and care for others.</p>
     </div>
   </div>
-</section>
-
-<!-- HELP BUILD A LASTING LEGACY -->
-<section class="goal" id="goal">
-  <div class="glow" aria-hidden="true" data-parallax="0.22"></div><div class="grain" aria-hidden="true"></div>
-  <div class="wrap"><div class="grid">
-    <div data-aos="fade-up">
-      <span class="eyebrow">Help Build a Lasting Legacy</span>
-      <h2><span class="big">₹1 Crore</span><span class="sub">Endowment Goal</span></h2>
-      <p class="lead">The fund aims to build a sustainable endowment that will support student research travel and academic excellence for generations to come.</p>
-      <a href="#contribute" class="btn btn-gold btn-lg">Contribute to the Fund</a>
-    </div>
-    <div data-aos="fade-up" data-aos-delay="100">
-      <!-- Set data-raised to the live total (in rupees) before publishing. -->
-      <div class="fund-card" id="progress" data-raised="0" data-goal="10000000">
-        <div class="fc-top">
-          <svg class="ring" viewBox="0 0 180 180" aria-hidden="true">
-            <defs><linearGradient id="ringgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B04A2E"/><stop offset="100%" stop-color="#E6A949"/></linearGradient></defs>
-            <circle class="ring-bg" cx="90" cy="90" r="76"/>
-            <circle class="ring-fg" id="ringFg" cx="90" cy="90" r="76" transform="rotate(-90 90 90)"/>
-            <text class="ring-pct" id="ringPct" x="90" y="86" text-anchor="middle" dominant-baseline="middle">0%</text>
-            <text class="ring-sub" x="90" y="108" text-anchor="middle">of goal</text>
-          </svg>
-          <div class="fc-figs">
-            <div class="raised" id="raisedV">₹0</div>
-            <div class="ofgoal">raised of <strong id="goalV">₹1 Crore</strong></div>
-          </div>
-        </div>
-        <div class="mbar"><div class="track"><div class="fill" id="fill"></div></div><div class="ticks"><span>₹0</span><span>₹25L</span><span>₹50L</span><span>₹75L</span><span>₹1Cr</span></div></div>
-      </div>
-    </div>
-  </div></div>
 </section>
 
 <!-- A LIFE REMEMBERED -->
@@ -419,8 +421,7 @@
     <div class="top">
       <div data-aos="fade-up"><div class="frame zoomable" data-label="Arzoo Katiyar"><img src="Images/image_23.png" alt="Arzoo Katiyar" loading="lazy" decoding="async" onerror="this.closest('.frame').classList.add('missing')"></div></div>
       <div data-aos="fade-up" data-aos-delay="100">
-        <span class="eyebrow">A Life Remembered</span>
-        <h2>Arzoo Katiyar<span class="dates">September 9, 1990 &nbsp;–&nbsp; May 30, 2021</span></h2>
+        <h2 class="sec-h">Arzoo Katiyar<span class="dates">September 9, 1990 &nbsp;–&nbsp; May 30, 2021</span></h2>
         <div class="hr" aria-hidden="true"></div>
         <p>Arzoo was born in Hapur, Uttar Pradesh, and raised in Kanpur, where she grew up with a strong sense of discipline, empathy, integrity, and responsibility, qualities that defined her throughout her life.</p>
         <p>She completed her B.Tech–M.Tech Dual Degree in Computer Science and Engineering from IIT Kanpur in 2013, and pursued a Ph.D. in Computer Science at Cornell University, where her work focused on natural language processing. She completed her doctorate in 2019, followed by a postdoctoral research position at ASAPP Inc., before joining the Penn State College of Engineering as an Assistant Professor of Computer Science in 2020.</p>
@@ -429,7 +430,7 @@
     <div class="more" data-aos="fade-up">
       <p class="turn">But Arzoo was much more than her remarkable academic achievements.</p>
       <p class="warm">She listened patiently, encouraged generously, and cared deeply. She was fiercely principled yet endlessly warm, sincere yet playful, brilliant yet profoundly humble. Her friends remember her laughter and the comfort of simply being around her. She made people feel supported, understood, and valued.</p>
-      <p class="close">The impact she left behind continues to shape countless lives through memories, friendships, and mentorship.</p>
+      <p class="close">The impact she left behind continues to shape countless lives through <span class="em">memories, friendships, and mentorship.</span></p>
     </div>
   </div>
 </section>
@@ -438,9 +439,9 @@
 <section class="grant" id="grant">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow" data-aos="fade-up">The Arzoo Katiyar Memorial Travel Grant</span>
-      <p class="glead" data-aos="fade-up">One of the most transformative experiences for a student researcher is the opportunity to present their work before an international academic community. Conferences open doors to new ideas, collaborations, mentorship, and confidence, experiences that often shape the future of a student's journey.</p>
-      <p class="gbody" data-aos="fade-up">The Arzoo Katiyar Memorial Travel Grant has been envisioned to support deserving students at IIT Kanpur in accessing these opportunities. Inspired by Arzoo's own academic journey and her commitment to research excellence, the grant seeks to encourage young scholars, especially women in STEM, to pursue ambitious research and engage with the global scientific community.</p>
+      <h2 class="sec-h" data-aos="fade-up">The Arzoo Katiyar <span class="accent">Memorial Travel Grant</span></h2>
+      <p class="glead" data-aos="fade-up">Envisioned to support deserving students at IIT Kanpur in accessing global research opportunities. Inspired by Arzoo's own academic journey and her commitment to research excellence, the grant encourages young scholars, especially women in STEM, to pursue ambitious research and engage with the global scientific community.</p>
+      <p class="gsupport" data-aos="fade-up">One of the most transformative experiences for a student researcher is the opportunity to present their work before an international academic community — conferences open doors to new ideas, collaborations, mentorship, and confidence.</p>
     </div>
     <div class="cols">
       <div class="gcard" data-aos="fade-up">
@@ -466,74 +467,132 @@
   </div>
 </section>
 
-
-
 <!-- CARRY FORWARD HER LEGACY -->
 <section class="cf" id="contribute">
-  <div class="glow" aria-hidden="true" data-parallax="0.22"></div><div class="grain" aria-hidden="true"></div>
-  <div class="wrap"><div class="grid">
-    <div data-aos="fade-up">
-      <span class="eyebrow">Carry Forward Her Legacy</span>
-      <h2>Carry Forward Her Legacy</h2>
-      <p>The Arzoo Katiyar Memorial Fund is a collective effort to honour a life that inspired so many with intelligence, integrity, warmth, and kindness.</p>
-      <p>Your contribution will help future students access opportunities, pursue meaningful research, and represent their work on global platforms.</p>
-      <p>Every donation, big or small, becomes part of a lasting legacy, one that continues to empower, encourage, and uplift.</p>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cf-head" data-aos="fade-up">
+      <h2 class="sec-h center">Carry Forward <span class="accent">Her Legacy</span></h2>
+      <div class="h-rule" aria-hidden="true"></div>
     </div>
-    <div data-aos="fade-up" data-aos-delay="100">
-      <div class="give-card">
-        <div class="gc-k">Make a Contribution</div>
-        <div class="amounts" id="amounts">
-          <button class="amt" data-amt="2500">₹2,500</button>
-          <button class="amt" data-amt="5000">₹5,000</button>
-          <button class="amt" data-amt="10000">₹10,000</button>
-          <button class="amt" data-amt="25000">₹25,000</button>
-          <button class="amt" data-amt="50000">₹50,000</button>
-          <button class="amt other" data-amt="other">Other amount</button>
+    <div class="grid">
+      <!-- LEFT: progress card with goal inside -->
+      <div data-aos="fade-up">
+        <div class="prog-card" id="progress" data-raised="0" data-goal="10000000">
+          <div class="goal-banner">
+            <p class="gb-k">Endowment Goal</p>
+            <div class="gb-fig">₹1 Crore</div>
+            <span class="gb-sub">A lasting endowment</span>
+          </div>
+          <div class="pc-head">
+            <span class="pc-k">Endowment Progress</span>
+            <span class="pc-pill"><span id="pctPill">0</span>% funded</span>
+          </div>
+          <div class="pc-top">
+            <svg class="ring" viewBox="0 0 180 180" aria-hidden="true">
+              <defs><linearGradient id="ringgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B04A2E"/><stop offset="100%" stop-color="#E6A949"/></linearGradient></defs>
+              <circle class="ring-bg" cx="90" cy="90" r="76"/>
+              <circle class="ring-fg" id="ringFg" cx="90" cy="90" r="76" transform="rotate(-90 90 90)"/>
+              <text class="ring-pct" id="ringPct" x="90" y="86" text-anchor="middle" dominant-baseline="middle">0%</text>
+              <text class="ring-sub" x="90" y="108" text-anchor="middle">funded</text>
+            </svg>
+            <div class="pc-figs">
+              <div class="raised" id="raisedV">₹0</div>
+              <div class="ofgoal">raised of <strong id="goalV">₹1 Crore</strong> goal</div>
+            </div>
+          </div>
+          <div class="mbar"><div class="track"><div class="fill" id="fill"></div></div><div class="ticks"><span>₹0</span><span>₹25L</span><span>₹50L</span><span>₹75L</span><span>₹1Cr</span></div></div>
         </div>
-        <div class="other-wrap" id="otherWrap" hidden>
-          <label for="otherInput">Enter your amount</label>
-          <div class="field"><span>₹</span><input type="number" id="otherInput" min="1" placeholder="Amount" inputmode="numeric"></div>
+      </div>
+
+      <!-- RIGHT: multi-step contribution form -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <div class="give-card">
+          <div class="form-head">
+            <span class="gc-k">Make a Contribution</span>
+            <div class="steps" aria-hidden="true">
+              <span class="dot on" id="dot1">1</span><span class="sline" id="sline"></span><span class="dot" id="dot2">2</span>
+            </div>
+          </div>
+
+          <!-- STEP 1 -->
+          <div class="step" id="step1">
+            <label class="fld-label" id="countryLabel">Select Country <span class="req">*</span></label>
+            <div class="dropdown" id="countryDrop">
+              <button type="button" class="dd-btn" id="countryBtn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="countryLabel">
+                <span class="dd-val"><span class="flag">🇮🇳</span><span class="dd-text">India</span></span>
+                <span class="dd-caret" aria-hidden="true">▾</span>
+              </button>
+              <ul class="dd-list" id="countryList" role="listbox">
+                <li role="option" aria-selected="true"  data-flag="🇮🇳" data-name="India"          data-sym="₹"  data-code="INR"><span class="flag">🇮🇳</span>India<span class="ccode">INR ₹</span></li>
+                <li role="option" aria-selected="false" data-flag="🇺🇸" data-name="United States"  data-sym="$"  data-code="USD"><span class="flag">🇺🇸</span>United States<span class="ccode">USD $</span></li>
+                <li role="option" aria-selected="false" data-flag="🇦🇺" data-name="Australia"      data-sym="A$" data-code="AUD"><span class="flag">🇦🇺</span>Australia<span class="ccode">AUD A$</span></li>
+                <li role="option" aria-selected="false" data-flag="🇬🇧" data-name="United Kingdom" data-sym="£"  data-code="GBP"><span class="flag">🇬🇧</span>United Kingdom<span class="ccode">GBP £</span></li>
+                <li role="option" aria-selected="false" data-flag="🇨🇦" data-name="Canada"         data-sym="C$" data-code="CAD"><span class="flag">🇨🇦</span>Canada<span class="ccode">CAD C$</span></li>
+                <li role="option" aria-selected="false" data-flag="🇩🇪" data-name="Germany"        data-sym="€"  data-code="EUR"><span class="flag">🇩🇪</span>Germany<span class="ccode">EUR €</span></li>
+              </ul>
+            </div>
+
+            <label class="fld-label" for="amtInput">Enter Amount <span class="req">*</span></label>
+            <div class="field"><span class="cur" id="curSym">₹</span><input type="number" id="amtInput" min="1" placeholder="Amount" inputmode="numeric"></div>
+            <p class="err" id="amtErr">Please enter a valid amount.</p>
+
+            <div class="form-actions">
+              <a href="#" class="btn btn-clay btn-lg btn-block" id="nextBtn">Next →</a>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="step" id="step2" hidden>
+            <label class="fld-label" for="nameInput">Full Name <span class="req">*</span></label>
+            <div class="field full"><input type="text" id="nameInput" placeholder="Your full name" autocomplete="name"></div>
+            <p class="err" id="nameErr">Please enter your name.</p>
+
+            <label class="fld-label" for="emailInput">Email <span class="req">*</span></label>
+            <div class="field full"><input type="email" id="emailInput" placeholder="you@example.com" autocomplete="email"></div>
+            <p class="err" id="emailErr">Please enter a valid email.</p>
+
+            <label class="fld-label" for="phoneInput">Phone Number</label>
+            <div class="field full"><input type="tel" id="phoneInput" placeholder="Phone number" autocomplete="tel"></div>
+
+            <label class="fld-label">Mark this donation as Anonymous?</label>
+            <div class="seg" id="anonSeg" role="group" aria-label="Anonymous donation">
+              <button type="button" data-val="yes">Yes</button>
+              <button type="button" class="on" data-val="no">No</button>
+            </div>
+
+            <div class="form-actions">
+              <a href="#" class="btn btn-outline btn-lg" id="prevBtn" style="color:var(--clay)">← Previous</a>
+              <a href="#" class="btn btn-clay btn-lg" id="payBtn">Pay Now</a>
+            </div>
+          </div>
         </div>
-        <a href="#" class="btn btn-clay btn-lg btn-block" id="giveBtn">Contribute to the Fund</a>
       </div>
     </div>
-  </div></div>
+  </div>
 </section>
 
 <!-- MEMORIES OF ARZOO -->
 <section class="mem" id="memories">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow" data-aos="fade-up">Memories of Arzoo</span>
-      <p data-aos="fade-up">The memories shared here reflect the many ways Arzoo touched people's lives, through friendship, kindness, humour, sincerity, quiet strength, and unwavering support.</p>
+      <h2 class="sec-h center" data-aos="fade-up">Memories of <span class="accent">Arzoo</span></h2>
+      <p data-aos="fade-up">The memories shared here reflect the many ways Arzoo touched people's lives — through friendship, kindness, humour, sincerity, quiet strength, and unwavering support.</p>
     </div>
-    <div class="mgrid" id="mgrid" data-aos="fade-up">
-      <div class="mcard"><span class="qm" aria-hidden="true">“</span><p class="h">“She always made people feel cared for.”</p><p class="b">Arzoo was sincere, hardworking, kind, and caring. She was the perfect example of a good girl - the kind of student every teacher loved, every parent is proud of, someone you could always count on for help.. even if you showed up the night before an exam telling her you hadn't done a single assignment and late nights weren't your thing! Many people were scared of her intense eyes.. I loved how fiercely she stood by the principles she believed in..</p><div class="who"><span class="av">SM</span><span class="nm">Shruti Mittal<span>Y8489</span></span></div></div>
-      <div class="mcard"><span class="qm" aria-hidden="true">“</span><p class="h">“She just made everything and everyone she touched better.”</p><p class="b">I cannot think of a wiser, kinder, more considerate and more honest person, who genuinely could see good in everyone, and was also so much fun and joy to be around. She was such a driven soul, dedicated to her goals, and extremely loving and generous to those she cared about. She lived every moment fiercely, and fought till the end to protect her friends and family, even from the pain of losing her. Arzoo lived a longer, fuller life than most of us.</p><div class="who"><span class="av">AR</span><span class="nm">Akshara Rai<span>Y8054</span></span></div></div>
-      <div class="mcard"><span class="qm" aria-hidden="true">“</span><p class="h">“She was the most compassionate friend.”</p><p class="b">I have known Arzoo since our days preparing for the JEE. She has been the most compassionate friend to me, always helpful and patient with any questions I had. We used to eat poha together cooked by her mom, which made those moments even more special. I deeply admire how kind-hearted and mature person she was, and I know she will continue to inspire us all.</p><div class="who"><span class="av">SP</span><span class="nm">Swati Pathak<span>Y8525</span></span></div></div>
-      <div class="mcard"><span class="qm" aria-hidden="true">“</span><p class="h">“Her belief changed the way I moved forward.”</p><p class="b">I will always remember the words of encouragement she gave me at my lowest point, during my drop year preparing for JEE. They stayed with me when I needed strength the most, and they shaped the way I moved forward. I attribute many of the successes that came after to the belief she offered me so freely. This scholarship is a way of carrying that belief forward — so her kindness continues to change someone's path, the way it changed mine..</p><div class="who"><span class="av">RS</span><span class="nm">Richa Srivastava<span>Y8416</span></span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She was our moral compass.”</p><p class="b">Arzoo was kindness and simplicity personified. She was calm, logical and patient for everyone around her. She was a moral compass for a lot of us. And when she had fun, she filled up the room with laughter and joy. I will always remember her smile. To me, she is still smiling at us and in her own way, being kind to us.</p><div class="who"><span class="av">SR</span><span class="nm">Saswati Roy</span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“Her laughter filled every room.”</p><p class="b">When I think of Arzoo, the first thing that comes to mind is her laughter — so infectious, so full of life.What always stood out to me was how simple and genuine Arzoo was. There was such purity in the way she lived and interacted with people. Arzoo had a rare ability to understand and care for others in a way that was deeply authentic.</p><div class="who"><span class="av">TM</span><span class="nm">Tanya Mendiratta</span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She inspired authenticity and simplicity.”</p><p class="b">Arzoo was a happy and calm soul and it was always so nice just to be around her! There have been countless times when she has inspired to be a more authentic, hardworking and simple person and I am grateful for each moment I got to spend with her!</p><div class="who"><span class="av">AP</span><span class="nm">Ankita Panwar</span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“A brilliant mind and a gentle soul.”</p><p class="b">Her emotions were always sincere towards everything and everyone around her. She was someone who genuinely cared. A brilliant mind and a gentle soul. I admired her back then and even today.</p><div class="who"><span class="av">AA</span><span class="nm">Ankita Agarwal</span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She brought brightness into people's lives.”</p><p class="b">Arzoo was also my partner for most of my department assignments. She was very dedicated and sincere. She refused to take short cuts and worked hard towards each assignment. She is one of the most honest persons I have met in my life. I miss her every single day and cherish all the memories we spend together.</p><div class="who"><span class="av">PW</span><span class="nm">Prajyoti Waghmare</span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“Her warmth and kindness stay with us forever.”</p><p class="b">Arzoo was a beautiful and loving soul. I remember her immense focus and dedication, how she was always ready to help everyone. She had the kind of laugh that filled the air, loud enough for the whole block to hear. I hope she can feel, wherever she is, the love and admiration we will always hold for her.</p><div class="who"><span class="av">HP</span><span class="nm">Hemangini Parmar</span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She was my first friend at college.”</p><p class="b">It's hard to find the right words for someone who meant so much. Arzoo was my roommate in our first year and my first friend at college. She was one of the kindest, most genuine people I have ever known. She always made time for the people she cared about and had a special way of making everyone feel valued and supported.</p><div class="who"><span class="av">AM</span><span class="nm">Ankita Mittal<span>Y8097</span></span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She remained the same caring person through every stage of life.”</p><p class="b">Arzoo has been the purest person at heart I have ever met. I was mesmerised by Arzoo's intelligence and simplicity. Even after 8 years of college graduation, after becoming a professor, she was the same old close and helpful and helped to review my masters thesis.</p><div class="who"><span class="av">SK</span><span class="nm">Sandhya Kumari</span></div></div>
-      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She inspired people with quiet grace.”</p><p class="b">Arzoo was one of the kindest people I remember from my days at IITK. I will always remember her humility, gentle nature, and intellectual curiosity, as well as her humor and quiet mischievousness that only her close friends truly got to see. She inspired me with her quiet grace, and I am sure she inspired people around her wherever she went, be it her friends, peers, students, or professors.</p><div class="who"><span class="av">PD</span><span class="nm">Pranay Dighe</span></div></div>
+    <div class="tools" data-aos="fade-up">
+      <button class="btn btn-outline" id="shuffleBtn" style="color:var(--clay)"><span class="shuffle-ic" aria-hidden="true">⤮</span> Shuffle Memories</button>
+      <a href="tributes.html" class="btn btn-clay" id="readAll">Read All 13 Memories →</a>
     </div>
-    <div class="actions">
-      <button class="btn btn-outline" id="viewMore" style="color:var(--clay)">View More</button>
-    </div>
+    <div class="mgrid" id="mgrid" data-aos="fade-up"></div>
   </div>
 </section>
 
-<!-- THROUGH THE YEARS -->
+<!-- THROUGH THE YEARS (unchanged) -->
 <section class="gallery" id="gallery">
   <div class="grain" aria-hidden="true"></div>
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow" data-aos="fade-up">Through the Years</span>
+      <h2 class="sec-h center" data-aos="fade-up">Through the <span class="accent">Years</span></h2>
       <p data-aos="fade-up">This gallery is a collection of moments, memories, friendships, and journeys that celebrate Arzoo's life, from IIT Kanpur and Cornell to cherished moments with friends and family.</p>
     </div>
     <div class="ornament" data-aos="fade-up" aria-hidden="true"><span class="l"></span><i></i><span class="r"></span></div>
@@ -565,7 +624,7 @@
         <a href="#contribute" class="btn btn-clay">Contribute to the Fund</a>
       </div>
       <div class="foot-col"><h4>Explore</h4><a href="#about">The Fund</a><a href="#life">A Life Remembered</a><a href="#grant">The Grant</a><a href="#memories">Memories of Arzoo</a><a href="#gallery">Through the Years</a></div>
-      <div class="foot-col"><h4>The Grant</h4><a href="#grant">Student Eligibility</a><a href="#grant">Areas of Support</a><a href="#grant">Selection Criteria</a><a href="#goal">Help Build a Lasting Legacy</a></div>
+      <div class="foot-col"><h4>The Grant</h4><a href="#grant">Student Eligibility</a><a href="#grant">Areas of Support</a><a href="#grant">Selection Criteria</a><a href="#contribute">Help Build a Lasting Legacy</a></div>
     </div>
     <div class="foot-bottom">
       <span>Indian Institute of Technology Kanpur</span>
@@ -583,6 +642,8 @@
 <script>
   document.getElementById('yr').textContent=new Date().getFullYear();
   if(window.AOS){AOS.init({duration:700,once:true,offset:60,easing:'ease-out-cubic',disable:window.matchMedia('(prefers-reduced-motion: reduce)').matches});}
+
+  /* nav */
   (function(){var t=document.getElementById('navToggle'),links=document.getElementById('navLinks');
     t.addEventListener('click',function(){var o=document.body.classList.toggle('menu-open');t.setAttribute('aria-expanded',o);});
     links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('menu-open');t.setAttribute('aria-expanded',false);});});})();
@@ -591,40 +652,120 @@
     function onScroll(){fcta.classList.toggle('show',window.scrollY>240);}
     onScroll();window.addEventListener('scroll',onScroll,{passive:true});
     var fin=document.getElementById('contribute');if(fin){new IntersectionObserver(function(es){es.forEach(function(e){fcta.style.visibility=e.isIntersecting?'hidden':'visible';});},{threshold:.2}).observe(fin);}})();
+
+  /* progress ring */
   (function(){var p=document.getElementById('progress');if(!p)return;
     var raised=+p.dataset.raised||0,goal=+p.dataset.goal||10000000,pct=Math.min(100,Math.round(raised/goal*100));
     function cr(n){if(n>=10000000)return '₹'+(n/10000000).toFixed(n%10000000?2:0).replace(/\.00$/,'')+' Cr';if(n>=100000)return '₹'+(n/100000).toFixed(n%100000?1:0).replace(/\.0$/,'')+' L';return '₹'+n.toLocaleString('en-IN');}
     document.getElementById('goalV').textContent=cr(goal);
     var rV=document.getElementById('raisedV'),ringFg=document.getElementById('ringFg'),ringPct=document.getElementById('ringPct'),fill=document.getElementById('fill'),done=false,C=2*Math.PI*76;
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!done){done=true;ringFg.style.strokeDashoffset=C*(1-pct/100);fill.style.width=pct+'%';
-      var t0=performance.now(),dur=1700;(function tick(t){var k=Math.min(1,(t-t0)/dur);rV.textContent=cr(Math.round(raised*k));ringPct.textContent=Math.round(pct*k)+'%';if(k<1)requestAnimationFrame(tick);})(t0);}});},{threshold:.4});io.observe(p);})();
-  (function(){var b=document.getElementById('viewMore'),m=document.getElementById('mgrid');if(!b||!m)return;
-    b.addEventListener('click',function(){var o=m.classList.toggle('show-all');b.textContent=o?'View Less':'View More';if(window.AOS)AOS.refresh();});})();
-  (function(){var DONATE_URL='#';
-    var btns=document.querySelectorAll('.amt'),give=document.getElementById('giveBtn'),wrap=document.getElementById('otherWrap'),inp=document.getElementById('otherInput');
-    function setHref(amt){give.href=DONATE_URL+(amt?(DONATE_URL.indexOf('?')>-1?'&':'?')+'amount='+amt:'');}
-    btns.forEach(function(b){b.addEventListener('click',function(){
-      btns.forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');
-      if(b.dataset.amt==='other'){wrap.hidden=false;inp.focus();setHref(inp.value||'');}
-      else{wrap.hidden=true;setHref(b.dataset.amt);}
-    });});
-    if(inp){inp.addEventListener('input',function(){setHref(inp.value||'');});}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!done){done=true;if(ringFg)ringFg.style.strokeDashoffset=C*(1-pct/100);fill.style.width=pct+'%';
+      var pill=document.getElementById('pctPill');
+      var t0=performance.now(),dur=1700;(function tick(t){var k=Math.min(1,(t-t0)/dur);rV.textContent=cr(Math.round(raised*k));ringPct.textContent=Math.round(pct*k)+'%';if(pill)pill.textContent=Math.round(pct*k);if(k<1)requestAnimationFrame(tick);})(t0);}});},{threshold:.4});io.observe(p);})();
+
+  /* ===== multi-step contribution form ===== */
+  (function(){
+    var DONATE_URL='#'; // set live payment URL here
+    var drop=document.getElementById('countryDrop');if(!drop)return;
+    var btn=document.getElementById('countryBtn'),list=document.getElementById('countryList'),
+        valFlag=btn.querySelector('.flag'),valText=btn.querySelector('.dd-text'),
+        curSym=document.getElementById('curSym'),amt=document.getElementById('amtInput'),amtErr=document.getElementById('amtErr'),
+        next=document.getElementById('nextBtn'),prev=document.getElementById('prevBtn'),pay=document.getElementById('payBtn'),
+        step1=document.getElementById('step1'),step2=document.getElementById('step2'),
+        dot1=document.getElementById('dot1'),dot2=document.getElementById('dot2'),sline=document.getElementById('sline'),
+        nameI=document.getElementById('nameInput'),emailI=document.getElementById('emailInput'),phoneI=document.getElementById('phoneInput'),
+        nameErr=document.getElementById('nameErr'),emailErr=document.getElementById('emailErr'),
+        anonSeg=document.getElementById('anonSeg');
+    var state={country:'India',code:'INR',sym:'₹',anon:'no'};
+
+    /* country dropdown */
+    btn.addEventListener('click',function(e){e.stopPropagation();var o=drop.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
+    list.querySelectorAll('li').forEach(function(li){li.addEventListener('click',function(){
+      state.country=li.dataset.name;state.code=li.dataset.code;state.sym=li.dataset.sym;
+      valFlag.textContent=li.dataset.flag;valText.textContent=li.dataset.name;curSym.textContent=li.dataset.sym;
+      list.querySelectorAll('li').forEach(function(x){x.setAttribute('aria-selected','false');});
+      li.setAttribute('aria-selected','true');drop.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
+    document.addEventListener('click',function(e){if(!drop.contains(e.target)){drop.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){drop.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+
+    /* anonymous toggle */
+    anonSeg.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
+      anonSeg.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');state.anon=b.dataset.val;});});
+
+    amt.addEventListener('input',function(){amtErr.classList.remove('show');});
+    nameI.addEventListener('input',function(){nameErr.classList.remove('show');});
+    emailI.addEventListener('input',function(){emailErr.classList.remove('show');});
+
+    function gotoStep(n){
+      if(n===1){step1.hidden=false;step2.hidden=true;dot2.classList.remove('on');sline.classList.remove('on');}
+      else{step1.hidden=true;step2.hidden=false;dot2.classList.add('on');sline.classList.add('on');}
+    }
+
+    next.addEventListener('click',function(e){e.preventDefault();
+      var v=parseFloat(amt.value);
+      if(!v||v<=0){amtErr.classList.add('show');amt.focus();return;}
+      gotoStep(2);nameI.focus();});
+
+    prev.addEventListener('click',function(e){e.preventDefault();gotoStep(1);});
+
+    pay.addEventListener('click',function(e){e.preventDefault();
+      var ok=true;
+      if(!nameI.value.trim()){nameErr.classList.add('show');ok=false;}
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailI.value.trim())){emailErr.classList.add('show');ok=false;}
+      if(!ok){return;}
+      var q=['amount='+encodeURIComponent(amt.value),'currency='+encodeURIComponent(state.code),
+             'country='+encodeURIComponent(state.country),'name='+encodeURIComponent(nameI.value.trim()),
+             'email='+encodeURIComponent(emailI.value.trim()),'phone='+encodeURIComponent(phoneI.value.trim()),
+             'anonymous='+encodeURIComponent(state.anon)];
+      var url=DONATE_URL+(DONATE_URL.indexOf('?')>-1?'&':'?')+q.join('&');
+      if(DONATE_URL==='#'){alert('Payment gateway not yet connected.\n\nWill submit:\n'+q.join('\n').replace(/%20/g,' '));return;}
+      window.location.href=url;});
   })();
+
+  /* ===== Memories: data + render + shuffle ===== */
+  (function(){
+    var grid=document.getElementById('mgrid');if(!grid)return;
+    var T=[
+      {slug:"shruti-mittal",h:"She always made people feel cared for.",b:"Sincere, hardworking, kind, and caring — the kind of student every teacher loved and everyone could count on. I loved how fiercely she stood by the principles she believed in.",nm:"Shruti Mittal",id:"Y8489",av:"SM"},
+      {slug:"akshara-rai",h:"She made everything and everyone she touched better.",b:"I cannot think of a wiser, kinder, more honest person, who could see good in everyone, and was also so much fun to be around. Arzoo lived a longer, fuller life than most of us.",nm:"Akshara Rai",id:"Y8054",av:"AR"},
+      {slug:"swati-pathak",h:"She was the most compassionate friend.",b:"I have known Arzoo since our days preparing for the JEE — always helpful and patient with any questions I had. We used to eat poha together cooked by her mom, which made those moments even more special.",nm:"Swati Pathak",id:"Y8525",av:"SP"},
+      {slug:"richa-srivastava",h:"Her belief changed the way I moved forward.",b:"I will always remember the words of encouragement she gave me at my lowest point. This scholarship is a way of carrying that belief forward — so her kindness continues to change someone's path.",nm:"Richa Srivastava",id:"Y8416",av:"RS"},
+      {slug:"saswati-roy",h:"She was our moral compass.",b:"Arzoo was kindness and simplicity personified — calm, logical and patient for everyone around her. When she had fun, she filled up the room with laughter and joy. To me, she is still smiling at us.",nm:"Saswati Roy",id:"",av:"SR"},
+      {slug:"tanya-mendiratta",h:"Her laughter filled every room.",b:"When I think of Arzoo, the first thing that comes to mind is her laughter — so infectious, so full of life. There was such purity in the way she lived and cared for people, deeply and authentically.",nm:"Tanya Mendiratta",id:"",av:"TM"},
+      {slug:"ankita-panwar",h:"She inspired authenticity and simplicity.",b:"Arzoo was a happy and calm soul and it was always so nice just to be around her. She inspired me to be a more authentic, hardworking and simple person, and I am grateful for each moment I spent with her.",nm:"Ankita Panwar",id:"",av:"AP"},
+      {slug:"ankita-agarwal",h:"A brilliant mind and a gentle soul.",b:"Her emotions were always sincere towards everything and everyone around her. She was someone who genuinely cared — a brilliant mind and a gentle soul. I admired her back then and even today.",nm:"Ankita Agarwal",id:"",av:"AA"},
+      {slug:"prajyoti-waghmare",h:"She refused to take shortcuts.",b:"Arzoo was my department buddy. She was very dedicated and sincere, and worked hard towards each assignment. She is one of the most honest persons I have met in my life. I miss her every single day.",nm:"Prajyoti Waghmare",id:"",av:"PW"},
+      {slug:"hemangini-parmar",h:"Her warmth stays with us forever.",b:"A beautiful and loving soul. I remember her immense focus and dedication, and how she was always ready to help everyone. She had the kind of laugh loud enough for the whole block to hear.",nm:"Hemangini Parmar",id:"",av:"HP"},
+      {slug:"ankita-mittal",h:"She was my first friend at college.",b:"Arzoo was my roommate in our first year and my first friend at college — one of the kindest, most genuine people I have ever known. She had a special way of making everyone feel valued and supported.",nm:"Ankita Mittal",id:"Y8097",av:"AM"},
+      {slug:"sandhya-kumari",h:"She remained the same through every stage of life.",b:"The purest person at heart I have ever met. Even after 8 years of graduation, after becoming a professor, she was the same old close and helpful Arzoo — she even helped review my master's thesis.",nm:"Sandhya Kumari",id:"",av:"SK"},
+      {slug:"pranay-dighe",h:"She inspired people with quiet grace.",b:"One of the kindest people I remember from IITK — her humility, gentle nature, intellectual curiosity, and quiet mischievousness that only close friends saw. She inspired everyone around her wherever she went.",nm:"Pranay Dighe",id:"",av:"PD"}
+    ];
+    var SHOW=6;
+    function shuffleArr(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+    function card(t){
+      var idHtml=t.id?'<span>'+t.id+'</span>':'';
+      return '<a class="mcard" href="tribute.html?id='+t.slug+'"><span class="qm" aria-hidden="true">“</span>'+
+        '<p class="h">“'+t.h+'”</p><p class="b">'+t.b+'</p>'+
+        '<div class="who"><span class="av">'+t.av+'</span><span class="nm">'+t.nm+idHtml+'</span></div>'+
+        '<span class="read-more">Read full memory <em>→</em></span></a>';
+    }
+    function render(list){grid.innerHTML=list.slice(0,SHOW).map(card).join('');}
+    render(shuffleArr(T));
+    var sb=document.getElementById('shuffleBtn');
+    sb.addEventListener('click',function(){
+      sb.classList.add('shuffling');setTimeout(function(){sb.classList.remove('shuffling');},520);
+      var cards=grid.querySelectorAll('.mcard');cards.forEach(function(c){c.classList.add('fade');});
+      setTimeout(function(){render(shuffleArr(T));if(window.AOS)AOS.refresh();},300);
+    });
+  })();
+
+  /* read progress bar */
   (function(){var b=document.getElementById('readbar');if(!b)return;
     function u(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;var p=max>0?(h.scrollTop/max)*100:0;b.style.width=p+'%';}
     u();window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);})();
-  (function(){
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    var els=[].slice.call(document.querySelectorAll('[data-parallax]'));if(!els.length)return;
-    var ticking=false;
-    function update(){var vh=window.innerHeight;
-      els.forEach(function(el){var r=el.getBoundingClientRect();if(r.bottom<-300||r.top>vh+300)return;
-        var center=r.top+r.height/2,off=(center-vh/2)/vh,sp=parseFloat(el.getAttribute('data-parallax'))||0.1;
-        el.style.transform='translate3d(0,'+(off*sp*120).toFixed(1)+'px,0)';});
-      ticking=false;}
-    function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
-    window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);update();
-  })();
+
+  /* lightbox */
   (function(){var lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),close=document.getElementById('lbClose'),lastFocus=null;
     function open(src,alt){lastFocus=document.activeElement;img.src=src;img.alt=alt||'';lb.classList.add('open');close.focus();}
     function shut(){lb.classList.remove('open');img.src='';if(lastFocus)lastFocus.focus();}

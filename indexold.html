@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arzoo Katiyar Memorial Fund · IIT Kanpur</title>
+
+<!--
+  ASSETS — folder "Images" beside this file.
+  LOGO: Images/logo.png  (an "IITK" monogram shows until added)
+  PHOTOS: HERO image_1.jpg · A LIFE REMEMBERED image_23.png
+          GALLERY image_1,3,5,7,8,9,11,12,13,14,15,18,19,20,24,25,31,32
+  GO LIVE: set DONATE_URL (script) and #progress data-raised (live amount, rupees).
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+<style>
+  :root{
+    --clay:#B04A2E; --clay-deep:#8F3A20; --maroon:#3A2117; --maroon-deep:#2A1610;
+    --cream:#F4ECDD; --cream-2:#EFE5D2; --ivory:#FBF7EF;
+    --ink:#2B201A; --ink-soft:#6E5D52; --amber:#E6A949;
+    --line:rgba(43,32,26,.16); --line-soft:rgba(43,32,26,.09);
+    --shadow:0 2px 4px rgba(58,33,23,.06), 0 22px 48px -26px rgba(58,33,23,.4);
+    --shadow-lift:0 6px 14px rgba(58,33,23,.08), 0 30px 60px -28px rgba(58,33,23,.5);
+    --maxw:1440px; --pad:48px;
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:17px;line-height:1.74;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:500;color:var(--ink);margin:0;letter-spacing:-.015em;line-height:1.1;}
+  p{margin:0 0 1.1em;}
+  a{color:inherit;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);}
+  @media(max-width:640px){:root{--pad:24px;}}
+
+  .eyebrow{font-family:"Inter",sans-serif;font-weight:600;font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--clay);margin:0 0 18px;display:inline-flex;align-items:center;gap:13px;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:currentColor;opacity:.6;flex:none;}
+  .eyebrow.light{color:var(--amber);}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Inter",sans-serif;font-weight:600;font-size:.86rem;letter-spacing:.04em;text-transform:uppercase;padding:15px 30px;border-radius:4px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s;}
+  .btn-clay{background:var(--clay);color:#fff;box-shadow:0 8px 20px -10px rgba(176,74,46,.7);}
+  .btn-clay:hover{background:var(--clay-deep);color:#fff;transform:translateY(-3px);box-shadow:0 14px 30px -12px rgba(176,74,46,.85);}
+  .btn-gold{background:var(--amber);color:#3a2606;box-shadow:0 8px 20px -10px rgba(230,169,73,.8);}
+  .btn-gold:hover{background:#d99a36;transform:translateY(-3px);}
+  .btn-outline{background:transparent;border-color:currentColor;}
+  .btn-outline:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);}
+  .btn-lg{padding:18px 36px;font-size:.92rem;}
+  .btn-block{width:100%;justify-content:center;}
+
+  .grain{position:absolute;inset:0;background-image:var(--grain);background-size:140px;opacity:.05;mix-blend-mode:overlay;pointer-events:none;z-index:1;}
+
+  .iitk{display:inline-flex;align-items:center;justify-content:center;flex:none;}
+  .iitk img{height:42px;width:auto;display:block;}
+  .iitk .fb{display:none;}
+  .iitk.nologo img{display:none;}
+  .iitk.nologo .fb{display:flex;align-items:center;justify-content:center;height:42px;width:42px;border-radius:50%;background:var(--maroon);color:var(--amber);font-family:"Fraunces",serif;font-weight:600;font-size:.86rem;border:1.5px solid var(--amber);}
+
+  .frame{position:relative;overflow:hidden;border-radius:6px;background:linear-gradient(135deg,#e7d9c1,#e3cbb3);}
+  .frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.22,1,.36,1);}
+  .frame.zoomable{cursor:zoom-in;}
+  .frame.zoomable:hover img{transform:scale(1.05);}
+  .frame.missing img{display:none;}
+  .frame.missing::after{content:attr(data-label);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font:600 .78rem "Inter",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--clay-deep);opacity:.5;background:repeating-linear-gradient(45deg,rgba(176,74,46,.05) 0 12px,transparent 12px 24px),linear-gradient(135deg,#e9dcc6,#e2c9b0);}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:60;transition:background .3s,box-shadow .3s;}
+  header.nav.solid{background:rgba(250,247,241,.95);backdrop-filter:saturate(150%) blur(10px);box-shadow:0 1px 0 var(--line-soft);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);}
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+  .brand .divider{width:1px;height:36px;background:rgba(255,255,255,.35);}
+  header.nav.solid .brand .divider{background:var(--line);}
+  .brand .titles b{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.04rem;line-height:1.1;color:#fff;letter-spacing:-.01em;}
+  .brand .titles small{display:block;font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px;}
+  header.nav.solid .brand .titles b{color:var(--ink);} header.nav.solid .brand .titles small{color:var(--ink-soft);}
+  .nav-links{display:flex;align-items:center;gap:30px;}
+  .nav-links a{position:relative;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.85);transition:color .2s;}
+  header.nav.solid .nav-links a{color:var(--ink-soft);}
+  .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--clay);transition:right .25s ease;}
+  .nav-links a:not(.btn):hover::after{right:0;}
+  .nav-links a:not(.btn):hover{color:#fff;}
+  header.nav.solid .nav-links a:not(.btn):hover{color:var(--clay);}
+  /* contribute button — always white text, both states (fix) */
+  .nav-links a.btn{color:#fff;}
+  header.nav.solid .nav-links a.btn{color:#fff;}
+  .nav-links a.btn:hover{color:#fff;}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;width:44px;height:44px;align-items:center;justify-content:center;}
+  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{content:"";display:block;width:24px;height:2px;background:#fff;transition:.25s;}
+  header.nav.solid .nav-toggle span,header.nav.solid .nav-toggle span::before,header.nav.solid .nav-toggle span::after{background:var(--ink);}
+  .nav-toggle span::before{position:absolute;margin-top:-7px;} .nav-toggle span::after{position:absolute;margin-top:7px;}
+  body.menu-open .nav-toggle span{background:transparent;}
+  body.menu-open .nav-toggle span::before{margin-top:0;transform:rotate(45deg);}
+  body.menu-open .nav-toggle span::after{margin-top:0;transform:rotate(-45deg);}
+  @media(max-width:880px){
+    .brand .titles small{display:none;}
+    .nav-toggle{display:flex;}
+    .nav-links{position:fixed;inset:62px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;background:var(--maroon);padding:8px 0 16px;transform:translateY(-130%);transition:transform .32s cubic-bezier(.22,1,.36,1);box-shadow:0 18px 40px -20px rgba(0,0,0,.6);}
+    body.menu-open .nav-links{transform:translateY(0);}
+    .nav-links a{color:#fff !important;padding:15px var(--pad);border-bottom:1px solid rgba(255,255,255,.08);letter-spacing:.1em;}
+    .nav-links a:not(.btn)::after{display:none;}
+    .nav-links a.btn{margin:14px var(--pad) 0;justify-content:center;background:var(--clay);border-radius:4px;}
+  }
+
+  .float-cta{position:fixed;right:24px;bottom:24px;z-index:55;background:var(--clay);color:#fff;text-decoration:none;font:600 .82rem "Inter",sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:15px 24px;border-radius:999px;box-shadow:0 12px 30px -8px rgba(176,74,46,.7);display:inline-flex;align-items:center;gap:9px;opacity:0;transform:translateY(20px) scale(.96);pointer-events:none;transition:all .35s cubic-bezier(.22,1,.36,1);}
+  .float-cta.show{opacity:1;transform:none;pointer-events:auto;}
+  .float-cta:hover{background:var(--clay-deep);transform:translateY(-2px);}
+  .float-cta::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 2.2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(230,169,73,.6);}70%{box-shadow:0 0 0 9px rgba(230,169,73,0);}100%{box-shadow:0 0 0 0 rgba(230,169,73,0);}}
+  @media(max-width:560px){.float-cta{right:16px;bottom:16px;padding:13px 20px;}}
+
+  /* HERO BANNER — full image, no cropping, no overlay */
+  .hero{position:relative;line-height:0;background:#3a2117;}
+  .hero img.banner{display:block;width:100%;height:auto;}
+  .hero .banner-fallback{display:none;}
+  .hero img.banner.missing{display:none;}
+  .hero img.banner.missing + .banner-fallback{display:flex;align-items:center;justify-content:center;min-height:42vw;background:linear-gradient(135deg,#5a3322,#3a2117);color:rgba(255,255,255,.5);font:600 .8rem "Inter",sans-serif;letter-spacing:.16em;text-transform:uppercase;line-height:1.4;text-align:center;padding:24px;}
+
+  /* shared editorial bits */
+  .ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin:42px auto;}
+  .ornament i{width:7px;height:7px;background:var(--amber);transform:rotate(45deg);flex:none;}
+  .ornament span{display:block;height:1px;width:72px;}
+  .ornament .l{background:linear-gradient(90deg,transparent,var(--clay));}
+  .ornament .r{background:linear-gradient(90deg,var(--clay),transparent);}
+  .drop::first-letter{font-family:"Fraunces",serif;font-weight:600;font-size:3.5em;line-height:.7;float:left;margin:8px 12px 0 0;color:var(--clay);}
+
+  /* ABOUT */
+  .about{padding:104px 0;}
+  .about-intro{max-width:1320px;margin:0 auto;text-align:center;}
+  .about .lead{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.28;color:var(--ink);margin:0;letter-spacing:-.01em;}
+  .about-body{max-width:1140px;margin:0 auto;}
+  .about-body p{break-inside:avoid;margin:0 0 1.1em;}
+  .about-body p:last-child{margin-bottom:0;}
+  @media(max-width:860px){.drop::first-letter{font-size:3em;}}
+  @media(max-width:860px){.drop::first-letter{font-size:3em;}}
+
+  /* GOAL */
+  .goal{background:var(--maroon-deep);color:#fff;position:relative;overflow:hidden;}
+  .goal .grain{opacity:.05;}
+  .goal .glow{position:absolute;top:-10%;right:-5%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(230,169,73,.16),transparent 65%);z-index:1;}
+  .goal .wrap{padding:92px var(--pad);position:relative;z-index:2;}
+  .goal .grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+  .goal .eyebrow{color:var(--amber);}
+  .goal h2{color:#fff;letter-spacing:-.02em;}
+  .goal h2 .big{display:block;font-size:clamp(3rem,7vw,5rem);line-height:.95;color:var(--amber);}
+  .goal h2 .sub{display:block;font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:400;color:#fff;margin-top:6px;letter-spacing:.01em;}
+  .goal .lead{color:rgba(255,255,255,.82);max-width:46ch;margin:18px 0 30px;}
+  .fund-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:44px;backdrop-filter:blur(4px);}
+  .fc-top{display:flex;align-items:center;gap:40px;}
+  .ring{width:180px;height:180px;flex:none;}
+  .ring .ring-bg{fill:none;stroke:rgba(255,255,255,.13);stroke-width:11;}
+  .ring .ring-fg{fill:none;stroke:url(#ringgrad);stroke-width:11;stroke-linecap:round;stroke-dasharray:477.5;stroke-dashoffset:477.5;transition:stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1);}
+  .ring .ring-pct{fill:#fff;font-family:"Fraunces",serif;font-weight:600;font-size:36px;}
+  .ring .ring-sub{fill:rgba(255,255,255,.6);font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:2px;text-transform:uppercase;}
+  .fc-figs .raised{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(2.2rem,4vw,3rem);color:var(--amber);line-height:1;}
+  .fc-figs .ofgoal{color:rgba(255,255,255,.72);font-size:.95rem;margin-top:6px;}
+  .mbar{margin-top:32px;}
+  .mbar .track{height:8px;border-radius:999px;background:rgba(255,255,255,.13);overflow:hidden;}
+  .mbar .fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--clay),var(--amber));transition:width 1.8s cubic-bezier(.22,1,.36,1);}
+  .mbar .ticks{display:flex;justify-content:space-between;margin-top:10px;font-size:.68rem;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.45);}
+  @media(max-width:880px){.goal .grid{grid-template-columns:1fr;gap:36px;}.fund-card{padding:32px;}.fc-top{gap:24px;}.ring{width:140px;height:140px;}}
+  @media(max-width:420px){.fc-top{flex-direction:column;text-align:center;align-items:center;}}
+
+  /* A LIFE REMEMBERED */
+  .life{background:var(--cream-2);padding:104px 0;}
+  .life .top{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px;align-items:center;}
+  .life .frame{aspect-ratio:4/5;box-shadow:var(--shadow);}
+  .life h2{font-size:clamp(2.2rem,4.4vw,3.2rem);margin-bottom:6px;line-height:1.02;}
+  .life h2 .dates{display:block;font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:clamp(1rem,1.8vw,1.3rem);color:var(--ink-soft);letter-spacing:0;margin-top:10px;}
+  .life .hr{width:54px;height:2px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:18px 0 24px;}
+  .life .top p{color:var(--ink);margin:0 0 1.1em;max-width:62ch;}
+  .life .top p:last-child{margin-bottom:0;}
+  .life .more{max-width:1240px;margin:66px auto 0;text-align:center;}
+  .life .turn{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.5rem,3vw,2.25rem);color:var(--maroon);line-height:1.18;margin:0 0 32px;max-width:none;}
+  .life .turn::before{content:"";display:block;width:54px;height:2px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:0 auto 30px;}
+  .life .warm{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(1.18rem,2.2vw,1.45rem);line-height:1.55;color:var(--clay-deep);background:var(--ivory);border-radius:16px;padding:40px 56px;box-shadow:var(--shadow);text-align:left;margin:0 auto 30px;max-width:1140px;position:relative;}
+  .life .close{color:var(--ink-soft);max-width:none;margin:0 auto;}
+  @media(max-width:860px){.life .top{grid-template-columns:1fr;gap:28px;}.life .frame{aspect-ratio:5/4;}.life .warm{padding:28px 26px;}}
+
+  /* GRANT */
+  .grant{background:var(--cream);padding:100px 0;}
+  .grant .head{max-width:1240px;margin:0 auto 56px;text-align:center;}
+  .grant h2{font-size:clamp(2rem,4.4vw,3rem);margin-bottom:22px;}
+  .grant .glead{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:1.3;color:var(--ink);max-width:1140px;margin:0 auto;letter-spacing:-.01em;}
+  .grant .gbody{max-width:1140px;margin:26px auto 0;color:var(--ink-soft);font-size:1.02rem;line-height:1.72;}
+  @media(max-width:860px){.grant .gbody{margin-top:22px;}}
+  .grant .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .gcard{background:var(--ivory);border:1px solid var(--line-soft);border-radius:14px;padding:38px 34px;position:relative;transition:transform .28s ease,box-shadow .28s ease;overflow:hidden;}
+  .gcard::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--clay);transition:width .35s ease;}
+  .gcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
+  .gcard:hover::before{width:100%;}
+  .gcard .badge{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(176,74,46,.1);color:var(--clay);margin-bottom:18px;}
+  .gcard .badge svg{width:27px;height:27px;}
+  .gcard h3{font-size:1.3rem;margin-bottom:6px;}
+  .gcard .k{font-size:.9rem;color:var(--ink-soft);margin-bottom:14px;}
+  .gcard ul{list-style:none;margin:0;padding:0;}
+  .gcard li{position:relative;padding:9px 0 9px 22px;color:var(--ink);font-size:.95rem;line-height:1.5;border-bottom:1px solid var(--line-soft);}
+  .gcard li:last-child{border-bottom:none;}
+  .gcard li::before{content:"";position:absolute;left:0;top:16px;width:7px;height:7px;border-radius:50%;background:var(--amber);}
+  .gcard .note{font-size:.86rem;color:var(--ink-soft);margin:14px 0 0;font-style:italic;}
+  @media(max-width:880px){.grant .cols{grid-template-columns:1fr;gap:18px;}}
+
+  /* IMPACT BAND */
+  .impact{background:var(--clay);color:#fff;position:relative;overflow:hidden;}
+  .impact .grain{opacity:.07;}
+  .impact .wrap{padding:90px var(--pad);position:relative;z-index:2;}
+  .impact .eyebrow{color:#fff;opacity:.85;}
+  .impact .grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start;}
+  .impact .lead{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.3;color:#fff;margin:0;position:relative;padding-top:28px;}
+  .impact .lead::before{content:"";position:absolute;top:0;left:0;width:54px;height:2px;background:var(--amber);}
+  .impact .stack p{color:rgba(255,255,255,.92);margin:0;}
+  .impact .stack p + p{margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.2);}
+  @media(max-width:820px){.impact .grid2{grid-template-columns:1fr;gap:30px;}}
+
+  /* CARRY FORWARD */
+  .cf{background:var(--maroon);color:#fff;position:relative;overflow:hidden;}
+  .cf .grain{opacity:.06;}
+  .cf .glow{position:absolute;top:-20%;left:-6%;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(230,169,73,.2),transparent 65%);z-index:1;}
+  .cf .wrap{padding:96px var(--pad);position:relative;z-index:2;}
+  .cf .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center;}
+  .cf .eyebrow{color:var(--amber);}
+  .cf h2{color:#fff;font-size:clamp(2.1rem,5vw,3.4rem);margin-bottom:22px;max-width:16ch;}
+  .cf p{color:rgba(255,255,255,.88);max-width:54ch;margin:0 0 1em;}
+  .give-card{background:var(--ivory);color:var(--ink);border-radius:18px;padding:42px;box-shadow:var(--shadow);}
+  .give-card .gc-k{font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:18px;}
+  .give-card .amounts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+  .give-card .amt{font:600 .98rem "Inter",sans-serif;padding:15px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:.2s;text-align:center;}
+  .give-card .amt:hover{border-color:var(--clay);transform:translateY(-2px);}
+  .give-card .amt.sel{background:var(--clay);color:#fff;border-color:var(--clay);}
+  .give-card .amt.other{grid-column:1 / -1;}
+  .other-wrap{margin:12px 0 0;}
+  .other-wrap[hidden]{display:none;}
+  .other-wrap label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  .other-wrap .field{display:flex;align-items:center;border:1.5px solid var(--clay);border-radius:8px;background:#fff;overflow:hidden;}
+  .other-wrap .field span{padding:0 0 0 16px;font-weight:700;color:var(--ink);}
+  .other-wrap input{flex:1;border:none;outline:none;padding:14px 16px;font:600 1rem "Inter",sans-serif;color:var(--ink);background:transparent;}
+  .give-card .btn{margin-top:20px;}
+  @media(max-width:880px){.cf .grid{grid-template-columns:1fr;gap:40px;}.give-card{padding:32px;}}
+
+  /* MEMORIES */
+  .mem{background:var(--cream);padding:100px 0;}
+  .mem .head{text-align:center;max-width:1320px;margin:0 auto 56px;}
+  .mem h2{font-size:clamp(2rem,4.6vw,3rem);margin-bottom:18px;}
+  .mem .head p{color:var(--ink-soft);font-size:1.02rem;}
+  .mgrid{columns:2;column-gap:30px;}
+  @media(max-width:760px){.mgrid{columns:1;}}
+  .mgrid:not(.show-all) .extra{display:none;}
+  .mcard{break-inside:avoid;position:relative;background:#fff;border:1px solid var(--line-soft);border-radius:16px;padding:32px 36px 26px 40px;margin:0 0 30px;transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease;}
+  .mcard::before{content:"";position:absolute;left:0;top:26px;bottom:26px;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--clay),var(--amber));opacity:.45;transition:opacity .3s;}
+  .mcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);border-color:var(--line);}
+  .mcard:hover::before{opacity:1;}
+  .mcard .qm{display:block;font-family:"Fraunces",serif;font-size:2.2rem;line-height:0;height:14px;color:var(--amber);margin:6px 0 18px;}
+  .mcard .h{font-family:"Fraunces",serif;font-weight:500;font-style:italic;font-size:1.28rem;line-height:1.34;color:var(--maroon);margin:0 0 14px;}
+  .mcard .b{font-size:.96rem;color:var(--ink-soft);line-height:1.7;margin:0 0 22px;}
+  .mcard .who{display:flex;align-items:center;gap:14px;border-top:1px solid var(--line-soft);padding-top:18px;}
+  .mcard .who .av{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:var(--cream-2);color:var(--clay-deep);font-family:"Fraunces",serif;font-weight:600;font-size:.92rem;border:1.5px solid var(--amber);}
+  .mcard .who .nm{font-weight:700;font-size:.94rem;color:var(--ink);line-height:1.2;}
+  .mcard .who .nm span{display:block;font-weight:600;font-size:.72rem;letter-spacing:.08em;color:var(--ink-soft);margin-top:3px;text-transform:uppercase;}
+  .mem .actions{text-align:center;margin-top:30px;}
+
+  /* GALLERY — curated mosaic */
+  .gallery{background:var(--maroon);padding:96px 0;position:relative;overflow:hidden;}
+  .gallery .grain{opacity:.06;}
+  .gallery .wrap{position:relative;z-index:2;}
+  .gallery .head{text-align:center;max-width:720px;margin:0 auto;}
+  .gallery .eyebrow{color:var(--amber);}
+  .gallery .head p{color:rgba(255,255,255,.82);}
+  .gallery .ornament{margin:30px auto 44px;}
+  .gallery .ornament .l{background:linear-gradient(90deg,transparent,var(--amber));}
+  .gallery .ornament .r{background:linear-gradient(90deg,var(--amber),transparent);}
+  .gmosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px;grid-auto-flow:dense;}
+  .gitem{position:relative;overflow:hidden;border-radius:12px;cursor:zoom-in;background:linear-gradient(135deg,#5a3322,#3a2117);box-shadow:0 18px 38px -24px rgba(0,0,0,.75);}
+  .gitem img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.22,1,.36,1);}
+  .gitem::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 50%,rgba(18,7,4,.45));opacity:0;transition:opacity .35s;pointer-events:none;}
+  .gitem:hover img{transform:scale(1.08);}
+  .gitem:hover::after{opacity:1;}
+  .gitem.big{grid-column:span 2;grid-row:span 2;}
+  .gitem.missing{cursor:default;}
+  .gitem.missing img{display:none;}
+  .gitem.missing::after{opacity:1;background:repeating-linear-gradient(45deg,rgba(230,169,73,.05) 0 14px,transparent 14px 28px);}
+  .gitem.missing::before{content:"";position:absolute;inset:0;z-index:1;background:center/40px no-repeat url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%23E6A949'%20stroke-width='1.2'%3E%3Crect%20x='3'%20y='5'%20width='18'%20height='14'%20rx='2'/%3E%3Ccircle%20cx='8.5'%20cy='10'%20r='1.5'/%3E%3Cpath%20d='M21%2015l-5-5-8%208'/%3E%3C/svg%3E");opacity:.4;}
+  @media(max-width:980px){.gmosaic{grid-template-columns:repeat(3,1fr);grid-auto-rows:175px;}.gitem.big{grid-row:span 2;}}
+  @media(max-width:680px){.gmosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;gap:12px;}.gitem.big{grid-column:span 2;grid-row:span 1;}}
+  @media(max-width:430px){.gmosaic{grid-auto-rows:135px;}}
+
+  /* FOOTER */
+  footer{background:var(--maroon-deep);color:rgba(255,255,255,.62);padding:60px 0 36px;font-size:.88rem;position:relative;overflow:hidden;}
+  footer .grain{opacity:.05;}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;position:relative;z-index:2;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:34px;}
+  .foot-brand{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+  .foot-brand b{font-family:"Fraunces",serif;font-weight:600;font-size:1.1rem;color:#fff;}
+  .foot-about p{max-width:48ch;line-height:1.6;margin:0 0 16px;font-style:italic;}
+  .foot-col h4{font-family:"Inter",sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;}
+  .foot-col a{display:block;color:rgba(255,255,255,.72);text-decoration:none;padding:5px 0;transition:color .2s;}
+  .foot-col a:hover{color:var(--amber);}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.78rem;color:rgba(255,255,255,.42);padding-top:22px;position:relative;z-index:2;}
+  @media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px;}}
+  @media(max-width:520px){.foot-grid{grid-template-columns:1fr;}}
+
+  /* LIGHTBOX */
+  .lb{position:fixed;inset:0;z-index:200;background:rgba(26,12,8,.95);display:none;align-items:center;justify-content:center;padding:32px;}
+  .lb.open{display:flex;}
+  .lb img{max-width:92vw;max-height:86vh;border-radius:6px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8);}
+  .lb-close{position:absolute;top:22px;right:26px;width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;transition:.2s;}
+  .lb-close:hover{background:rgba(255,255,255,.12);}
+
+  [data-aos]{pointer-events:auto;}
+  :focus-visible{outline:2px solid var(--clay);outline-offset:3px;}
+
+  /* ===== premium polish ===== */
+  #readbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--clay),var(--amber));z-index:80;box-shadow:0 0 12px rgba(230,169,73,.55);transition:width .08s linear;}
+
+  /* warmer, layered backgrounds for light sections */
+  .about{background:radial-gradient(150% 80% at 50% -15%, #FBF4E7 0%, var(--cream) 60%);}
+  .grant{background:radial-gradient(150% 80% at 50% -15%, #FBF4E7 0%, var(--cream) 60%);}
+  .mem{background:radial-gradient(150% 80% at 50% -10%, #FBF4E7 0%, var(--cream) 62%);}
+  .life{background:linear-gradient(180deg,#F1E7D4 0%,#E7DBC4 100%);}
+
+  /* soft depth at the top edge of dark sections (eases the transition) */
+  .goal::after,.cf::after,.gallery::after{content:"";position:absolute;top:0;left:0;right:0;height:160px;background:linear-gradient(180deg,rgba(12,5,3,.28),transparent);z-index:1;pointer-events:none;}
+  .impact::after{content:"";position:absolute;top:0;left:0;right:0;height:130px;background:linear-gradient(180deg,rgba(120,44,24,.4),transparent);z-index:1;pointer-events:none;}
+  .goal .wrap,.cf .wrap,.gallery .wrap,.impact .wrap{z-index:2;}
+
+  /* hairline gold seam between major sections */
+  .about,.life,.grant,.mem{position:relative;}
+  .about::before,.life::before,.grant::before,.mem::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1440px,100%);height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);}
+
+  /* parallax layers */
+  .glow{will-change:transform;}
+  @media(prefers-reduced-motion:reduce){.hero .bg img,.glow{transform:none !important;}}
+
+</style>
+</head>
+<body>
+
+<div id="readbar" aria-hidden="true"></div>
+
+<header class="nav solid" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" id="brand">
+      <span class="iitk"><img src="Images/logo.png" alt="IIT Kanpur" onerror="this.closest('.iitk').classList.add('nologo')"><span class="fb">IITK</span></span>
+      <span class="divider"></span>
+      <span class="titles"><b>Arzoo Katiyar Memorial Fund</b><small>Indian Institute of Technology Kanpur</small></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">The Fund</a><a href="#life">A Life Remembered</a><a href="#grant">The Grant</a><a href="#memories">Memories</a><a href="#gallery">Gallery</a>
+      <a href="#contribute" class="btn btn-clay">Contribute</a>
+    </nav>
+  </div>
+</header>
+
+<a href="#contribute" class="float-cta" id="floatCta">Contribute</a>
+<a id="top"></a>
+
+<!-- HERO BANNER -->
+<section class="hero">
+  <picture>
+    <source media="(max-width:760px)" srcset="Arzoo_Mobile%20Banner.jpg">
+    <img class="banner" src="Arzoo_Web%20banner.jpg" alt="Arzoo Katiyar Memorial Fund" fetchpriority="high" onerror="this.classList.add('missing')">
+  </picture>
+  <div class="banner-fallback" aria-hidden="true">Banner image — add Arzoo_Web banner.jpg &amp; Arzoo_Mobile Banner.jpg beside this file</div>
+</section>
+
+<!-- ABOUT THE FUND -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-intro">
+      <span class="eyebrow" data-aos="fade-up">About the Fund</span>
+      <p class="lead" data-aos="fade-up">The Arzoo Katiyar Memorial Fund has been created to honour the life, values, and legacy of Arzoo Katiyar, a deeply compassionate human being whose impact continues to live on through the people she touched.</p>
+    </div>
+    <div class="ornament" data-aos="fade-up" aria-hidden="true"><span class="l"></span><i></i><span class="r"></span></div>
+    <div class="about-body" data-aos="fade-up">
+      <p class="drop">Arzoo believed deeply in sincerity, intellectual honesty, hard work, and kindness. Whether in classrooms, research labs, hostel corridors, she brought warmth, clarity, and quiet strength into every space she occupied. This fund seeks to carry that spirit forward by supporting students at IIT Kanpur, especially young researchers striving to explore, present, and contribute to the global academic community.</p>
+      <p>More than a memorial, this initiative is a continuation of everything Arzoo stood for: curiosity, generosity, excellence, humility, and care for others.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HELP BUILD A LASTING LEGACY -->
+<section class="goal" id="goal">
+  <div class="glow" aria-hidden="true" data-parallax="0.22"></div><div class="grain" aria-hidden="true"></div>
+  <div class="wrap"><div class="grid">
+    <div data-aos="fade-up">
+      <span class="eyebrow">Help Build a Lasting Legacy</span>
+      <h2><span class="big">₹1 Crore</span><span class="sub">Endowment Goal</span></h2>
+      <p class="lead">The fund aims to build a sustainable endowment that will support student research travel and academic excellence for generations to come.</p>
+      <a href="#contribute" class="btn btn-gold btn-lg">Contribute to the Fund</a>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="100">
+      <!-- Set data-raised to the live total (in rupees) before publishing. -->
+      <div class="fund-card" id="progress" data-raised="0" data-goal="10000000">
+        <div class="fc-top">
+          <svg class="ring" viewBox="0 0 180 180" aria-hidden="true">
+            <defs><linearGradient id="ringgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B04A2E"/><stop offset="100%" stop-color="#E6A949"/></linearGradient></defs>
+            <circle class="ring-bg" cx="90" cy="90" r="76"/>
+            <circle class="ring-fg" id="ringFg" cx="90" cy="90" r="76" transform="rotate(-90 90 90)"/>
+            <text class="ring-pct" id="ringPct" x="90" y="86" text-anchor="middle" dominant-baseline="middle">0%</text>
+            <text class="ring-sub" x="90" y="108" text-anchor="middle">of goal</text>
+          </svg>
+          <div class="fc-figs">
+            <div class="raised" id="raisedV">₹0</div>
+            <div class="ofgoal">raised of <strong id="goalV">₹1 Crore</strong></div>
+          </div>
+        </div>
+        <div class="mbar"><div class="track"><div class="fill" id="fill"></div></div><div class="ticks"><span>₹0</span><span>₹25L</span><span>₹50L</span><span>₹75L</span><span>₹1Cr</span></div></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- A LIFE REMEMBERED -->
+<section class="life" id="life">
+  <div class="wrap">
+    <div class="top">
+      <div data-aos="fade-up"><div class="frame zoomable" data-label="Arzoo Katiyar"><img src="Images/image_23.png" alt="Arzoo Katiyar" loading="lazy" decoding="async" onerror="this.closest('.frame').classList.add('missing')"></div></div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <span class="eyebrow">A Life Remembered</span>
+        <h2>Arzoo Katiyar<span class="dates">September 9, 1990 &nbsp;–&nbsp; May 30, 2021</span></h2>
+        <div class="hr" aria-hidden="true"></div>
+        <p>Arzoo was born in Hapur, Uttar Pradesh, and raised in Kanpur, where she grew up with a strong sense of discipline, empathy, integrity, and responsibility, qualities that defined her throughout her life.</p>
+        <p>She completed her B.Tech–M.Tech Dual Degree in Computer Science and Engineering from IIT Kanpur in 2013, and pursued a Ph.D. in Computer Science at Cornell University, where her work focused on natural language processing. She completed her doctorate in 2019, followed by a postdoctoral research position at ASAPP Inc., before joining the Penn State College of Engineering as an Assistant Professor of Computer Science in 2020.</p>
+      </div>
+    </div>
+    <div class="more" data-aos="fade-up">
+      <p class="turn">But Arzoo was much more than her remarkable academic achievements.</p>
+      <p class="warm">She listened patiently, encouraged generously, and cared deeply. She was fiercely principled yet endlessly warm, sincere yet playful, brilliant yet profoundly humble. Her friends remember her laughter and the comfort of simply being around her. She made people feel supported, understood, and valued.</p>
+      <p class="close">The impact she left behind continues to shape countless lives through memories, friendships, and mentorship.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE TRAVEL GRANT -->
+<section class="grant" id="grant">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" data-aos="fade-up">The Arzoo Katiyar Memorial Travel Grant</span>
+      <p class="glead" data-aos="fade-up">One of the most transformative experiences for a student researcher is the opportunity to present their work before an international academic community. Conferences open doors to new ideas, collaborations, mentorship, and confidence, experiences that often shape the future of a student's journey.</p>
+      <p class="gbody" data-aos="fade-up">The Arzoo Katiyar Memorial Travel Grant has been envisioned to support deserving students at IIT Kanpur in accessing these opportunities. Inspired by Arzoo's own academic journey and her commitment to research excellence, the grant seeks to encourage young scholars, especially women in STEM, to pursue ambitious research and engage with the global scientific community.</p>
+    </div>
+    <div class="cols">
+      <div class="gcard" data-aos="fade-up">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+        <h3>Student Eligibility</h3>
+        <p class="k">The grant is primarily intended to support:</p>
+        <ul><li>Female students at IIT Kanpur</li><li>Students in the 3rd, 4th, or 5th year of their academic program</li><li>B.Tech, Dual Degree, and Integrated program students</li><li>Students who are first authors of accepted research papers at reputed international conferences</li></ul>
+      </div>
+      <div class="gcard" data-aos="fade-up" data-aos-delay="100">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16l20-7-7 20-2.5-8.5L2 16z"/></svg></div>
+        <h3>Areas of Support</h3>
+        <p class="k">The fund will provide financial assistance for:</p>
+        <ul><li>International conference travel</li><li>Accommodation and stay</li><li>Academic presentation-related expenses</li><li>Research exposure opportunities</li></ul>
+      </div>
+      <div class="gcard" data-aos="fade-up" data-aos-delay="200">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></div>
+        <h3>Selection Criteria</h3>
+        <p class="k">Applications will be evaluated based on:</p>
+        <ul><li>Quality and impact of research work</li><li>Reputation and relevance of the conference</li><li>Academic merit and overall contribution</li></ul>
+        <p class="note">The Institute will constitute a selection committee to identify deserving recipients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CARRY FORWARD HER LEGACY -->
+<section class="cf" id="contribute">
+  <div class="glow" aria-hidden="true" data-parallax="0.22"></div><div class="grain" aria-hidden="true"></div>
+  <div class="wrap"><div class="grid">
+    <div data-aos="fade-up">
+      <span class="eyebrow">Carry Forward Her Legacy</span>
+      <h2>Carry Forward Her Legacy</h2>
+      <p>The Arzoo Katiyar Memorial Fund is a collective effort to honour a life that inspired so many with intelligence, integrity, warmth, and kindness.</p>
+      <p>Your contribution will help future students access opportunities, pursue meaningful research, and represent their work on global platforms.</p>
+      <p>Every donation, big or small, becomes part of a lasting legacy, one that continues to empower, encourage, and uplift.</p>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="100">
+      <div class="give-card">
+        <div class="gc-k">Make a Contribution</div>
+        <div class="amounts" id="amounts">
+          <button class="amt" data-amt="2500">₹2,500</button>
+          <button class="amt" data-amt="5000">₹5,000</button>
+          <button class="amt" data-amt="10000">₹10,000</button>
+          <button class="amt" data-amt="25000">₹25,000</button>
+          <button class="amt" data-amt="50000">₹50,000</button>
+          <button class="amt other" data-amt="other">Other amount</button>
+        </div>
+        <div class="other-wrap" id="otherWrap" hidden>
+          <label for="otherInput">Enter your amount</label>
+          <div class="field"><span>₹</span><input type="number" id="otherInput" min="1" placeholder="Amount" inputmode="numeric"></div>
+        </div>
+        <a href="#" class="btn btn-clay btn-lg btn-block" id="giveBtn">Contribute to the Fund</a>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- MEMORIES OF ARZOO -->
+<section class="mem" id="memories">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" data-aos="fade-up">Memories of Arzoo</span>
+      <p data-aos="fade-up">The memories shared here reflect the many ways Arzoo touched people's lives, through friendship, kindness, humour, sincerity, quiet strength, and unwavering support.</p>
+    </div>
+    <div class="mgrid" id="mgrid" data-aos="fade-up">
+      <div class="mcard"><span class="qm" aria-hidden="true">“</span><p class="h">“She always made people feel cared for.”</p><p class="b">Arzoo was sincere, hardworking, kind, and caring. She was the perfect example of a good girl - the kind of student every teacher loved, every parent is proud of, someone you could always count on for help.. even if you showed up the night before an exam telling her you hadn't done a single assignment and late nights weren't your thing! Many people were scared of her intense eyes.. I loved how fiercely she stood by the principles she believed in..</p><div class="who"><span class="av">SM</span><span class="nm">Shruti Mittal<span>Y8489</span></span></div></div>
+      <div class="mcard"><span class="qm" aria-hidden="true">“</span><p class="h">“She just made everything and everyone she touched better.”</p><p class="b">I cannot think of a wiser, kinder, more considerate and more honest person, who genuinely could see good in everyone, and was also so much fun and joy to be around. She was such a driven soul, dedicated to her goals, and extremely loving and generous to those she cared about. She lived every moment fiercely, and fought till the end to protect her friends and family, even from the pain of losing her. Arzoo lived a longer, fuller life than most of us.</p><div class="who"><span class="av">AR</span><span class="nm">Akshara Rai<span>Y8054</span></span></div></div>
+      <div class="mcard"><span class="qm" aria-hidden="true">“</span><p class="h">“She was the most compassionate friend.”</p><p class="b">I have known Arzoo since our days preparing for the JEE. She has been the most compassionate friend to me, always helpful and patient with any questions I had. We used to eat poha together cooked by her mom, which made those moments even more special. I deeply admire how kind-hearted and mature person she was, and I know she will continue to inspire us all.</p><div class="who"><span class="av">SP</span><span class="nm">Swati Pathak<span>Y8525</span></span></div></div>
+      <div class="mcard"><span class="qm" aria-hidden="true">“</span><p class="h">“Her belief changed the way I moved forward.”</p><p class="b">I will always remember the words of encouragement she gave me at my lowest point, during my drop year preparing for JEE. They stayed with me when I needed strength the most, and they shaped the way I moved forward. I attribute many of the successes that came after to the belief she offered me so freely. This scholarship is a way of carrying that belief forward — so her kindness continues to change someone's path, the way it changed mine..</p><div class="who"><span class="av">RS</span><span class="nm">Richa Srivastava<span>Y8416</span></span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She was our moral compass.”</p><p class="b">Arzoo was kindness and simplicity personified. She was calm, logical and patient for everyone around her. She was a moral compass for a lot of us. And when she had fun, she filled up the room with laughter and joy. I will always remember her smile. To me, she is still smiling at us and in her own way, being kind to us.</p><div class="who"><span class="av">SR</span><span class="nm">Saswati Roy</span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“Her laughter filled every room.”</p><p class="b">When I think of Arzoo, the first thing that comes to mind is her laughter — so infectious, so full of life.What always stood out to me was how simple and genuine Arzoo was. There was such purity in the way she lived and interacted with people. Arzoo had a rare ability to understand and care for others in a way that was deeply authentic.</p><div class="who"><span class="av">TM</span><span class="nm">Tanya Mendiratta</span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She inspired authenticity and simplicity.”</p><p class="b">Arzoo was a happy and calm soul and it was always so nice just to be around her! There have been countless times when she has inspired to be a more authentic, hardworking and simple person and I am grateful for each moment I got to spend with her!</p><div class="who"><span class="av">AP</span><span class="nm">Ankita Panwar</span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“A brilliant mind and a gentle soul.”</p><p class="b">Her emotions were always sincere towards everything and everyone around her. She was someone who genuinely cared. A brilliant mind and a gentle soul. I admired her back then and even today.</p><div class="who"><span class="av">AA</span><span class="nm">Ankita Agarwal</span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She brought brightness into people's lives.”</p><p class="b">Arzoo was also my partner for most of my department assignments. She was very dedicated and sincere. She refused to take short cuts and worked hard towards each assignment. She is one of the most honest persons I have met in my life. I miss her every single day and cherish all the memories we spend together.</p><div class="who"><span class="av">PW</span><span class="nm">Prajyoti Waghmare</span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“Her warmth and kindness stay with us forever.”</p><p class="b">Arzoo was a beautiful and loving soul. I remember her immense focus and dedication, how she was always ready to help everyone. She had the kind of laugh that filled the air, loud enough for the whole block to hear. I hope she can feel, wherever she is, the love and admiration we will always hold for her.</p><div class="who"><span class="av">HP</span><span class="nm">Hemangini Parmar</span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She was my first friend at college.”</p><p class="b">It's hard to find the right words for someone who meant so much. Arzoo was my roommate in our first year and my first friend at college. She was one of the kindest, most genuine people I have ever known. She always made time for the people she cared about and had a special way of making everyone feel valued and supported.</p><div class="who"><span class="av">AM</span><span class="nm">Ankita Mittal<span>Y8097</span></span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She remained the same caring person through every stage of life.”</p><p class="b">Arzoo has been the purest person at heart I have ever met. I was mesmerised by Arzoo's intelligence and simplicity. Even after 8 years of college graduation, after becoming a professor, she was the same old close and helpful and helped to review my masters thesis.</p><div class="who"><span class="av">SK</span><span class="nm">Sandhya Kumari</span></div></div>
+      <div class="mcard extra"><span class="qm" aria-hidden="true">“</span><p class="h">“She inspired people with quiet grace.”</p><p class="b">Arzoo was one of the kindest people I remember from my days at IITK. I will always remember her humility, gentle nature, and intellectual curiosity, as well as her humor and quiet mischievousness that only her close friends truly got to see. She inspired me with her quiet grace, and I am sure she inspired people around her wherever she went, be it her friends, peers, students, or professors.</p><div class="who"><span class="av">PD</span><span class="nm">Pranay Dighe</span></div></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-outline" id="viewMore" style="color:var(--clay)">View More</button>
+    </div>
+  </div>
+</section>
+
+<!-- THROUGH THE YEARS -->
+<section class="gallery" id="gallery">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow" data-aos="fade-up">Through the Years</span>
+      <p data-aos="fade-up">This gallery is a collection of moments, memories, friendships, and journeys that celebrate Arzoo's life, from IIT Kanpur and Cornell to cherished moments with friends and family.</p>
+    </div>
+    <div class="ornament" data-aos="fade-up" aria-hidden="true"><span class="l"></span><i></i><span class="r"></span></div>
+    <div class="gmosaic" data-aos="fade-up">
+      <div class="gitem big"><img src="Images/image_1.jpg" alt="Arzoo Katiyar" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem"><img src="Images/image_5.png" alt="Arzoo with friends" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem"><img src="Images/image_7.jpg" alt="Arzoo with friends" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem"><img src="Images/image_13.jpg" alt="Convocation" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem"><img src="Images/image_18.jpg" alt="Group photo" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem big"><img src="Images/image_11.jpg" alt="At a waterfall" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem"><img src="Images/image_12.jpg" alt="Arzoo with friends" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem"><img src="Images/image_20.jpg" alt="Friends" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem"><img src="Images/image_25.png" alt="Arzoo with a friend" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+      <div class="gitem"><img src="Images/image_32.jpg" alt="At the mountains" loading="lazy" decoding="async" onerror="this.closest('.gitem').classList.add('missing')"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <div class="foot-brand">
+          <span class="iitk"><img src="IITK Logo_White-01 (1).png" alt="IIT Kanpur" style="height:84px;width:auto;" onerror="this.closest('.iitk').classList.add('nologo')"><span class="fb">IITK</span></span>
+          <b>Arzoo Katiyar Memorial Fund</b>
+        </div>
+        <p>Honouring a brilliant scholar, compassionate friend, and inspiring educator by enabling future generations of students and researchers.</p>
+        <a href="#contribute" class="btn btn-clay">Contribute to the Fund</a>
+      </div>
+      <div class="foot-col"><h4>Explore</h4><a href="#about">The Fund</a><a href="#life">A Life Remembered</a><a href="#grant">The Grant</a><a href="#memories">Memories of Arzoo</a><a href="#gallery">Through the Years</a></div>
+      <div class="foot-col"><h4>The Grant</h4><a href="#grant">Student Eligibility</a><a href="#grant">Areas of Support</a><a href="#grant">Selection Criteria</a><a href="#goal">Help Build a Lasting Legacy</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>Indian Institute of Technology Kanpur</span>
+      <span>© <span id="yr"></span> Arzoo Katiyar Memorial Fund</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  if(window.AOS){AOS.init({duration:700,once:true,offset:60,easing:'ease-out-cubic',disable:window.matchMedia('(prefers-reduced-motion: reduce)').matches});}
+  (function(){var t=document.getElementById('navToggle'),links=document.getElementById('navLinks');
+    t.addEventListener('click',function(){var o=document.body.classList.toggle('menu-open');t.setAttribute('aria-expanded',o);});
+    links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('menu-open');t.setAttribute('aria-expanded',false);});});})();
+  (function(){var nav=document.getElementById('nav'),fcta=document.getElementById('floatCta');
+    nav.classList.add('solid');
+    function onScroll(){fcta.classList.toggle('show',window.scrollY>240);}
+    onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+    var fin=document.getElementById('contribute');if(fin){new IntersectionObserver(function(es){es.forEach(function(e){fcta.style.visibility=e.isIntersecting?'hidden':'visible';});},{threshold:.2}).observe(fin);}})();
+  (function(){var p=document.getElementById('progress');if(!p)return;
+    var raised=+p.dataset.raised||0,goal=+p.dataset.goal||10000000,pct=Math.min(100,Math.round(raised/goal*100));
+    function cr(n){if(n>=10000000)return '₹'+(n/10000000).toFixed(n%10000000?2:0).replace(/\.00$/,'')+' Cr';if(n>=100000)return '₹'+(n/100000).toFixed(n%100000?1:0).replace(/\.0$/,'')+' L';return '₹'+n.toLocaleString('en-IN');}
+    document.getElementById('goalV').textContent=cr(goal);
+    var rV=document.getElementById('raisedV'),ringFg=document.getElementById('ringFg'),ringPct=document.getElementById('ringPct'),fill=document.getElementById('fill'),done=false,C=2*Math.PI*76;
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&!done){done=true;ringFg.style.strokeDashoffset=C*(1-pct/100);fill.style.width=pct+'%';
+      var t0=performance.now(),dur=1700;(function tick(t){var k=Math.min(1,(t-t0)/dur);rV.textContent=cr(Math.round(raised*k));ringPct.textContent=Math.round(pct*k)+'%';if(k<1)requestAnimationFrame(tick);})(t0);}});},{threshold:.4});io.observe(p);})();
+  (function(){var b=document.getElementById('viewMore'),m=document.getElementById('mgrid');if(!b||!m)return;
+    b.addEventListener('click',function(){var o=m.classList.toggle('show-all');b.textContent=o?'View Less':'View More';if(window.AOS)AOS.refresh();});})();
+  (function(){var DONATE_URL='#';
+    var btns=document.querySelectorAll('.amt'),give=document.getElementById('giveBtn'),wrap=document.getElementById('otherWrap'),inp=document.getElementById('otherInput');
+    function setHref(amt){give.href=DONATE_URL+(amt?(DONATE_URL.indexOf('?')>-1?'&':'?')+'amount='+amt:'');}
+    btns.forEach(function(b){b.addEventListener('click',function(){
+      btns.forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');
+      if(b.dataset.amt==='other'){wrap.hidden=false;inp.focus();setHref(inp.value||'');}
+      else{wrap.hidden=true;setHref(b.dataset.amt);}
+    });});
+    if(inp){inp.addEventListener('input',function(){setHref(inp.value||'');});}
+  })();
+  (function(){var b=document.getElementById('readbar');if(!b)return;
+    function u(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;var p=max>0?(h.scrollTop/max)*100:0;b.style.width=p+'%';}
+    u();window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);})();
+  (function(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var els=[].slice.call(document.querySelectorAll('[data-parallax]'));if(!els.length)return;
+    var ticking=false;
+    function update(){var vh=window.innerHeight;
+      els.forEach(function(el){var r=el.getBoundingClientRect();if(r.bottom<-300||r.top>vh+300)return;
+        var center=r.top+r.height/2,off=(center-vh/2)/vh,sp=parseFloat(el.getAttribute('data-parallax'))||0.1;
+        el.style.transform='translate3d(0,'+(off*sp*120).toFixed(1)+'px,0)';});
+      ticking=false;}
+    function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
+    window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);update();
+  })();
+  (function(){var lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),close=document.getElementById('lbClose'),lastFocus=null;
+    function open(src,alt){lastFocus=document.activeElement;img.src=src;img.alt=alt||'';lb.classList.add('open');close.focus();}
+    function shut(){lb.classList.remove('open');img.src='';if(lastFocus)lastFocus.focus();}
+    document.querySelectorAll('.frame.zoomable,.gitem').forEach(function(f){f.addEventListener('click',function(){if(f.classList.contains('missing'))return;var i=f.querySelector('img');if(!i)return;var s=i.currentSrc||i.src;if(!s)return;open(s,i.alt);});});
+    close.addEventListener('click',shut);lb.addEventListener('click',function(e){if(e.target===lb)shut();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('open'))shut();});})();
+</script>
+</body>
+</html>
