@@ -6,7 +6,7 @@
 <title>Arzoo Katiyar Memorial Fund · IIT Kanpur</title>
 
 <!--
-  ASSETS — folder "Images" beside this file.
+  ASSETS - folder "Images" beside this file.
   LOGO: Images/logo.png  (an "IITK" monogram shows until added)
   HERO: Arzoo_Web banner.jpg / Arzoo_Mobile Banner.jpg
   A LIFE REMEMBERED: Images/image_23.png
@@ -46,7 +46,7 @@
   .eyebrow{font-family:"Inter",sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--clay);margin:0 0 16px;display:inline-flex;align-items:center;gap:11px;}
   .eyebrow.light{color:var(--amber);}
 
-  /* SECTION HEADINGS — bigger, highlighted */
+  /* SECTION HEADINGS - bigger, highlighted */
   .sec-h{font-size:clamp(2.3rem,5vw,3.5rem);line-height:1.02;margin:0;position:relative;}
   .sec-h .accent{color:var(--clay);}
   .h-rule{width:64px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:20px 0 0;}
@@ -135,13 +135,13 @@
   .about-intro{max-width:1440px;margin:0 auto;text-align:center;}
   .about .sec-h{margin-bottom:0;}
   .about .h-rule{margin:20px auto 0;}
-  .about .lead{font-family:"Fraunces",serif;font-weight:400;font-size:var(--fs-body);line-height:1.6;color:var(--ink);margin:28px auto 0;letter-spacing:0;max-width:1360px;}
+  .about .lead{font-family:"Fraunces",serif;font-weight:400;font-size:var(--fs-body);line-height:1.6;color:var(--ink);margin:28px auto 0;letter-spacing:0;max-width:1280px;text-align:left;}
   .about-body{max-width:1280px;margin:var(--gap-para) auto 0;}
   .about-body p{margin:0;color:var(--ink);}
   @media(max-width:860px){.drop::first-letter{font-size:2.9em;}}
 
   /* A LIFE REMEMBERED
-     TYPE SYSTEM: just two sizes — a heading size (--life-h, the name only)
+     TYPE SYSTEM: just two sizes - a heading size (--life-h, the name only)
      and one body size (--life-b, everything else). Hierarchy comes from
      font (Fraunces vs Inter), weight, italics, colour and the quote card,
      not from extra font sizes. */
@@ -157,7 +157,7 @@
   .life .turn{font-family:"Fraunces",serif;font-weight:500;font-size:var(--life-b);color:var(--maroon);line-height:1.45;margin:0 0 22px;}
   .life .turn::before{content:"";display:block;width:54px;height:2px;background:linear-gradient(90deg,var(--clay),var(--amber));margin:0 auto 22px;}
   .life .warm{font-family:"Fraunces",serif;font-style:italic;font-size:var(--life-b);line-height:1.65;color:var(--clay-deep);background:var(--ivory);border-radius:16px;padding:30px 40px;box-shadow:var(--shadow);text-align:left;margin:0 auto 24px;max-width:1140px;position:relative;}
-  /* IMPORTANT closing line — a clear statement, distinguished by serif + weight + colour, not size */
+  /* IMPORTANT closing line - a clear statement, distinguished by serif + weight + colour, not size */
   .life .close{font-family:"Fraunces",serif;font-weight:500;font-size:var(--life-b);line-height:1.55;color:var(--maroon);max-width:1080px;margin:0 auto;letter-spacing:0;}
   .life .close .em{color:var(--clay);font-style:italic;}
   @media(max-width:860px){.life .top{grid-template-columns:1fr;gap:26px;}.life .frame{aspect-ratio:5/4;max-width:none;}.life .warm{padding:26px 24px;}}
@@ -166,10 +166,10 @@
   .grant{padding:58px 0;}
   .grant .head{max-width:1280px;margin:0 auto 40px;text-align:center;}
   .grant .sec-h{margin-bottom:44px;}
-  /* important para — promoted to lead */
-  .grant .glead{font-family:"Fraunces",serif;font-weight:400;font-size:var(--fs-body);line-height:1.6;color:var(--ink);max-width:1180px;margin:0 auto;letter-spacing:0;}
+  /* important para - promoted to lead */
+  .grant .glead{font-family:"Fraunces",serif;font-weight:400;font-size:var(--fs-body);line-height:1.6;color:var(--ink);max-width:none;margin:0;letter-spacing:0;text-align:left;}
   /* de-emphasised supporting line */
-  .grant .gsupport{font-family:"Inter",sans-serif;font-size:var(--fs-body);line-height:1.7;color:var(--ink-soft);max-width:1040px;margin:20px auto 0;}
+  .grant .gsupport{font-family:"Inter",sans-serif;font-size:var(--fs-body);line-height:1.7;color:var(--ink-soft);max-width:none;margin:20px 0 0;text-align:left;}
   .grant .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:none;margin:0 auto;}
   .gcard{background:var(--ivory);border:1px solid var(--line-soft);border-radius:14px;padding:34px 30px;position:relative;transition:transform .28s ease,box-shadow .28s ease;overflow:hidden;}
   .gcard::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--clay);transition:width .35s ease;}
@@ -198,7 +198,7 @@
   .cf .prog-card,.cf .give-card{width:100%;}
   @media(max-width:880px){.cf .grid{grid-template-columns:1fr;gap:28px;}}
 
-  /* progress card — now carries the goal headline */
+  /* progress card - now carries the goal headline */
   .prog-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line-soft);border-radius:20px;padding:34px 34px 36px;box-shadow:var(--shadow);display:flex;flex-direction:column;}
   .prog-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--clay),var(--amber));}
   .goal-banner{text-align:center;padding:6px 0 26px;border-bottom:1px solid var(--line-soft);margin-bottom:26px;}
@@ -330,7 +330,7 @@
   .mcard .who .nm{font-weight:700;font-size:.92rem;color:var(--ink);line-height:1.2;}
   .mcard .who .nm span{display:block;font-weight:600;font-size:.7rem;letter-spacing:.08em;color:var(--ink-soft);margin-top:3px;text-transform:uppercase;}
 
-  /* GALLERY — unchanged */
+  /* GALLERY - unchanged */
   .gallery{background:radial-gradient(150% 80% at 50% -12%, #FFFFFF 0%, var(--cream) 62%);padding:58px 0;position:relative;overflow:hidden;}
   .gallery .grain{opacity:.04;}
   .gallery .wrap{position:relative;z-index:2;}
@@ -435,7 +435,7 @@
     <source media="(max-width:760px)" srcset="Arzoo_Mobile%20Banner.jpg">
     <img class="banner" src="Arzoo_Web%20banner.jpg" alt="Arzoo Katiyar Memorial Fund" fetchpriority="high" onerror="this.classList.add('missing')">
   </picture>
-  <div class="banner-fallback" aria-hidden="true">Banner image — add Arzoo_Web banner.jpg &amp; Arzoo_Mobile Banner.jpg beside this file</div>
+  <div class="banner-fallback" aria-hidden="true">Banner image - add Arzoo_Web banner.jpg &amp; Arzoo_Mobile Banner.jpg beside this file</div>
 </section>
 
 <!-- ABOUT THE FUND -->
@@ -444,7 +444,7 @@
     <div class="about-intro">
       <h2 class="sec-h center" data-aos="fade-up">About <span class="accent">the Fund</span></h2>
       <div class="h-rule" aria-hidden="true" data-aos="fade-up"></div>
-      <p class="lead" data-aos="fade-up">The Arzoo Katiyar Memorial Fund has been created to honour the life, values, and legacy of Arzoo Katiyar — a deeply compassionate human being whose impact continues to live on through the people she touched.</p>
+      <p class="lead" data-aos="fade-up">The Arzoo Katiyar Memorial Fund has been created to honour the life, values, and legacy of Arzoo Katiyar - a deeply compassionate human being whose impact continues to live on through the people she touched.</p>
     </div>
     <div class="about-body" data-aos="fade-up">
       <p class="drop">Arzoo believed deeply in sincerity, intellectual honesty, hard work, and kindness. Whether in classrooms, research labs, or hostel corridors, she brought warmth, clarity, and quiet strength into every space she occupied. This fund seeks to carry that spirit forward by supporting students at IIT Kanpur, especially young researchers striving to explore, present, and contribute to the global academic community. More than a memorial, this initiative is a continuation of everything Arzoo stood for: curiosity, generosity, excellence, humility, and care for others.</p>
@@ -458,10 +458,10 @@
     <div class="top">
       <div data-aos="fade-up"><div class="frame zoomable" data-label="Arzoo Katiyar"><img src="Images/image_23.png" alt="Arzoo Katiyar" loading="lazy" decoding="async" onerror="this.closest('.frame').classList.add('missing')"></div></div>
       <div data-aos="fade-up" data-aos-delay="100">
-        <h2 class="sec-h">Arzoo Katiyar<span class="dates">September 9, 1990 &nbsp;–&nbsp; May 30, 2021</span></h2>
+        <h2 class="sec-h">Arzoo Katiyar<span class="dates">September 9, 1990 &nbsp;-&nbsp; May 30, 2021</span></h2>
         <div class="hr" aria-hidden="true"></div>
         <p>Arzoo was born in Hapur, Uttar Pradesh, and raised in Kanpur, where she grew up with a strong sense of discipline, empathy, integrity, and responsibility, qualities that defined her throughout her life.</p>
-        <p>She completed her B.Tech–M.Tech Dual Degree in Computer Science and Engineering from IIT Kanpur in 2013, and pursued a Ph.D. in Computer Science at Cornell University, where her work focused on natural language processing. She completed her doctorate in 2019, followed by a postdoctoral research position at ASAPP Inc., before joining the Penn State College of Engineering as an Assistant Professor of Computer Science in 2020.</p>
+        <p>She completed her B.Tech-M.Tech Dual Degree in Computer Science and Engineering from IIT Kanpur in 2013, and pursued a Ph.D. in Computer Science at Cornell University, where her work focused on natural language processing. She completed her doctorate in 2019, followed by a postdoctoral research position at ASAPP Inc., before joining the Penn State College of Engineering as an Assistant Professor of Computer Science in 2020.</p>
       </div>
     </div>
     <div class="more" data-aos="fade-up">
@@ -477,7 +477,7 @@
   <div class="wrap">
     <div class="head">
       <h2 class="sec-h" data-aos="fade-up">The Arzoo Katiyar <span class="accent">Memorial Travel Grant</span></h2>
-      <p class="glead" data-aos="fade-up">One of the most transformative experiences for a student researcher is the opportunity to present their work before an international academic community — conferences open doors to new ideas, collaborations, mentorship, and confidence.</p>
+      <p class="glead" data-aos="fade-up">One of the most transformative experiences for a student researcher is the opportunity to present their work before an international academic community - conferences open doors to new ideas, collaborations, mentorship, and confidence.</p>
       <p class="gsupport" data-aos="fade-up">Envisioned to support deserving students at IIT Kanpur in accessing global research opportunities. Inspired by Arzoo's own academic journey and her commitment to research excellence, the grant encourages young scholars, especially women in STEM, to pursue ambitious research and engage with the global scientific community.</p>
     </div>
     <div class="cols">
@@ -621,7 +621,7 @@
   <div class="wrap">
     <div class="head">
       <h2 class="sec-h center" data-aos="fade-up">Memories of <span class="accent">Arzoo</span></h2>
-      <p data-aos="fade-up">The memories shared here reflect the many ways Arzoo touched people's lives — through friendship, kindness, humour, sincerity, quiet strength, and unwavering support.</p>
+      <p data-aos="fade-up">The memories shared here reflect the many ways Arzoo touched people's lives - through friendship, kindness, humour, sincerity, quiet strength, and unwavering support.</p>
     </div>
     <div id="mfeature" data-aos="fade-up"></div>
     <div class="mgrid" id="mgrid" data-aos="fade-up"></div>
@@ -774,19 +774,19 @@
   (function(){
     var grid=document.getElementById('mgrid'),feat=document.getElementById('mfeature');if(!grid)return;
     var T=[
-      {slug:"shruti-mittal",h:"She always made people feel cared for.",b:"Sincere, hardworking, kind, and caring \u2014 the kind of student every teacher loved and everyone could count on. I loved how fiercely she stood by the principles she believed in.",nm:"Shruti Mittal",id:"Y8489",av:"SM"},
+      {slug:"shruti-mittal",h:"She always made people feel cared for.",b:"Sincere, hardworking, kind, and caring - the kind of student every teacher loved and everyone could count on. I loved how fiercely she stood by the principles she believed in.",nm:"Shruti Mittal",id:"Y8489",av:"SM"},
       {slug:"akshara-rai",h:"She made everything and everyone she touched better.",b:"I cannot think of a wiser, kinder, more honest person, who could see good in everyone, and was also so much fun to be around. Arzoo lived a longer, fuller life than most of us.",nm:"Akshara Rai",id:"Y8054",av:"AR"},
-      {slug:"swati-pathak",h:"She was the most compassionate friend.",b:"I have known Arzoo since our days preparing for the JEE \u2014 always helpful and patient with any questions I had. We used to eat poha together cooked by her mom, which made those moments even more special.",nm:"Swati Pathak",id:"Y8525",av:"SP"},
-      {slug:"richa-srivastava",h:"Her belief changed the way I moved forward.",b:"I will always remember the words of encouragement she gave me at my lowest point. This fund is a way of carrying that belief forward \u2014 so her kindness continues to change someone\u2019s path.",nm:"Richa Srivastava",id:"Y8416",av:"RS"},
-      {slug:"saswati-roy",h:"She was our moral compass.",b:"Arzoo was kindness and simplicity personified \u2014 calm, logical and patient for everyone around her. When she had fun, she filled up the room with laughter and joy. To me, she is still smiling at us.",nm:"Saswati Roy",id:"",av:"SR"},
-      {slug:"tanya-mendiratta",h:"Her laughter filled every room.",b:"When I think of Arzoo, the first thing that comes to mind is her laughter \u2014 so infectious, so full of life. There was such purity in the way she lived and cared for people, deeply and authentically.",nm:"Tanya Mendiratta",id:"",av:"TM"},
+      {slug:"swati-pathak",h:"She was the most compassionate friend.",b:"I have known Arzoo since our days preparing for the JEE - always helpful and patient with any questions I had. We used to eat poha together cooked by her mom, which made those moments even more special.",nm:"Swati Pathak",id:"Y8525",av:"SP"},
+      {slug:"richa-srivastava",h:"Her belief changed the way I moved forward.",b:"I will always remember the words of encouragement she gave me at my lowest point. This scholarship is a way of carrying that belief forward - so her kindness continues to change someone\u2019s path.",nm:"Richa Srivastava",id:"Y8416",av:"RS"},
+      {slug:"saswati-roy",h:"She was our moral compass.",b:"Arzoo was kindness and simplicity personified - calm, logical and patient for everyone around her. When she had fun, she filled up the room with laughter and joy. To me, she is still smiling at us.",nm:"Saswati Roy",id:"",av:"SR"},
+      {slug:"tanya-mendiratta",h:"Her laughter filled every room.",b:"When I think of Arzoo, the first thing that comes to mind is her laughter - so infectious, so full of life. There was such purity in the way she lived and cared for people, deeply and authentically.",nm:"Tanya Mendiratta",id:"",av:"TM"},
       {slug:"ankita-panwar",h:"She inspired authenticity and simplicity.",b:"Arzoo was a happy and calm soul and it was always so nice just to be around her. She inspired me to be a more authentic, hardworking and simple person, and I am grateful for each moment I spent with her.",nm:"Ankita Panwar",id:"",av:"AP"},
-      {slug:"ankita-agarwal",h:"A brilliant mind and a gentle soul.",b:"Her emotions were always sincere towards everything and everyone around her. She was someone who genuinely cared \u2014 a brilliant mind and a gentle soul. I admired her back then and even today.",nm:"Ankita Agarwal",id:"",av:"AA"},
+      {slug:"ankita-agarwal",h:"A brilliant mind and a gentle soul.",b:"Her emotions were always sincere towards everything and everyone around her. She was someone who genuinely cared - a brilliant mind and a gentle soul. I admired her back then and even today.",nm:"Ankita Agarwal",id:"",av:"AA"},
       {slug:"prajyoti-waghmare",h:"She refused to take shortcuts.",b:"Arzoo was my department buddy. She was very dedicated and sincere, and worked hard towards each assignment. She is one of the most honest persons I have met in my life. I miss her every single day.",nm:"Prajyoti Waghmare",id:"",av:"PW"},
       {slug:"hemangini-parmar",h:"Her warmth stays with us forever.",b:"A beautiful and loving soul. I remember her immense focus and dedication, and how she was always ready to help everyone. She had the kind of laugh loud enough for the whole block to hear.",nm:"Hemangini Parmar",id:"",av:"HP"},
-      {slug:"ankita-mittal",h:"She was my first friend at college.",b:"Arzoo was my roommate in our first year and my first friend at college \u2014 one of the kindest, most genuine people I have ever known. She had a special way of making everyone feel valued and supported.",nm:"Ankita Mittal",id:"Y8097",av:"AM"},
-      {slug:"sandhya-kumari",h:"She remained the same through every stage of life.",b:"The purest person at heart I have ever met. Even after 8 years of graduation, after becoming a professor, she was the same old close and helpful Arzoo \u2014 she even helped review my master\u2019s thesis.",nm:"Sandhya Kumari",id:"",av:"SK"},
-      {slug:"pranay-dighe",h:"She inspired people with quiet grace.",b:"One of the kindest people I remember from IITK \u2014 her humility, gentle nature, intellectual curiosity, and quiet mischievousness that only close friends saw. She inspired everyone around her wherever she went.",nm:"Pranay Dighe",id:"",av:"PD"}
+      {slug:"ankita-mittal",h:"She was my first friend at college.",b:"Arzoo was my roommate in our first year and my first friend at college - one of the kindest, most genuine people I have ever known. She had a special way of making everyone feel valued and supported.",nm:"Ankita Mittal",id:"Y8097",av:"AM"},
+      {slug:"sandhya-kumari",h:"She remained the same through every stage of life.",b:"The purest person at heart I have ever met. Even after 8 years of graduation, after becoming a professor, she was the same old close and helpful Arzoo - she even helped review my master\u2019s thesis.",nm:"Sandhya Kumari",id:"",av:"SK"},
+      {slug:"pranay-dighe",h:"She inspired people with quiet grace.",b:"One of the kindest people I remember from IITK - her humility, gentle nature, intellectual curiosity, and quiet mischievousness that only close friends saw. She inspired everyone around her wherever she went.",nm:"Pranay Dighe",id:"",av:"PD"}
     ];
     var SHOW=6;
     function shuffleArr(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
