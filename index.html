@@ -257,6 +257,9 @@
   .field.invalid{border-color:var(--clay-deep);box-shadow:0 0 0 3px rgba(143,58,32,.12);}
   @media(max-width:560px){.form-actions .btn.btn-lg{padding:15px 12px;font-size:.8rem;letter-spacing:.02em;}}
 
+  /* redirect note (shown only for international donors) */
+  .intl-note{display:none;margin-top:18px;font-size:.92rem;line-height:1.55;color:var(--ink-soft);background:rgba(230,169,73,.12);border:1px solid rgba(230,169,73,.42);border-left:3px solid var(--amber);border-radius:10px;padding:13px 16px;}
+
   /* country dropdown */
   .dropdown{position:relative;}
   .dd-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:14px 16px;font:600 1rem "Inter",sans-serif;color:var(--ink);cursor:pointer;transition:border-color .2s;}
@@ -485,13 +488,13 @@
         <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
         <h3>Student Eligibility</h3>
         <p class="k">The grant is primarily intended to support:</p>
-        <ul><li>Female students at IIT Kanpur</li><li>Students in the 3rd, 4th, or 5th year of their academic program</li><li>B.Tech, Dual Degree, and Integrated program students</li><li>Students who are first authors of accepted research papers at reputed international conferences</li></ul>
+        <ul><li>Female students at IIT Kanpur</li><li>Students in the 3rd, 4th, or 5th year of their academic program</li><li>B.Tech, B.Tech - M.Tech Dual Degree, and B.Sc - M.Sc integrated program students</li><li>Students who are first authors of accepted research papers at reputed international conferences</li></ul>
       </div>
       <div class="gcard" data-aos="fade-up" data-aos-delay="100">
         <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 16l20-7-7 20-2.5-8.5L2 16z"/></svg></div>
         <h3>Areas of Support</h3>
         <p class="k">The fund will provide financial assistance for:</p>
-        <ul><li>International conference travel</li><li>Accommodation and stay</li><li>Academic presentation-related expenses</li><li>Research exposure opportunities</li></ul>
+        <ul><li>Support Students for attending International Conferences.</li><li>Accommodation and stay</li><li>Academic presentation-related expenses</li><li>To promote excellence, facilitate research, and broaden students' educational experience.</li></ul>
       </div>
       <div class="gcard" data-aos="fade-up" data-aos-delay="200">
         <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></div>
@@ -570,8 +573,12 @@
               </ul>
             </div>
 
-            <label class="fld-label" for="amtInput">Enter Amount <span class="req">*</span></label>
-            <div class="field"><span class="cur" id="curSym">₹</span><input type="number" id="amtInput" min="1" placeholder="Amount" inputmode="numeric"></div>
+            <div id="amtBlock">
+              <label class="fld-label" for="amtInput">Enter Amount <span class="req">*</span></label>
+              <div class="field"><span class="cur" id="curSym">₹</span><input type="number" id="amtInput" min="1" placeholder="Amount" inputmode="numeric"></div>
+            </div>
+
+            <div class="intl-note" id="intlNote">Note: You will be redirected to our secure payment partner's website for your selected country.</div>
 
             <div class="form-actions">
               <a href="#" class="btn btn-clay btn-lg btn-block" id="nextBtn">Next →</a>
@@ -710,17 +717,36 @@
 
   /* ===== multi-step contribution form ===== */
   (function(){
-    var DONATE_URL='#'; // set live payment URL here
+    var DONATE_URL='#'; // set live INDIA payment URL here (used by the India step-2 "Pay Now")
+    /* International donors are sent to their country's secure payment partner.
+       (Same partner links used across IITKDF's giving pages - swap here if needed.) */
+    var GATEWAYS={
+      'United States':'https://iitk.ac.in/dora/givingback/donate-now-usd/Annual-Gift-Programme',
+      'United Kingdom':'https://www.justgiving.com/charity/eff-iitkanpur',
+      'Australia':'https://myriadau.fcsuite.com/erp/donate/create/fund?funit_id=1128',
+      'Canada':'https://www.myriadcanada.org/en/project/support-education-research-healthcare-iit-kanpur/',
+      'Germany':'https://donate.transnationalgiving.eu/germany/IITKanpur'
+    };
     var drop=document.getElementById('countryDrop');if(!drop)return;
     var btn=document.getElementById('countryBtn'),list=document.getElementById('countryList'),
         valFlag=btn.querySelector('.flag'),valText=btn.querySelector('.dd-text'),
         curSym=document.getElementById('curSym'),amt=document.getElementById('amtInput'),
+        amtBlock=document.getElementById('amtBlock'),intlNote=document.getElementById('intlNote'),
         next=document.getElementById('nextBtn'),prev=document.getElementById('prevBtn'),pay=document.getElementById('payBtn'),
         step1=document.getElementById('step1'),step2=document.getElementById('step2'),
         dot2=document.getElementById('dot2'),sline=document.getElementById('sline'),
         nameI=document.getElementById('nameInput'),emailI=document.getElementById('emailInput'),phoneI=document.getElementById('phoneInput'),
         anonSeg=document.getElementById('anonSeg');
     var state={country:'India',code:'INR',sym:'\u20B9',anon:'no'};
+    /* India -> enter a custom amount on-page, then continue to details.
+       Other countries -> no amount field; the button redirects to the gateway
+       (donor enters the amount in their own currency there). */
+    function applyCountryUI(){
+      var isIndia=state.country==='India';
+      if(amtBlock)amtBlock.style.display=isIndia?'':'none';
+      if(intlNote)intlNote.style.display=isIndia?'none':'block';
+      if(next)next.textContent=isIndia?'Next \u2192':'Proceed to Payment \u2192';
+    }
     function fieldOf(el){return el.closest('.field');}
     function clearBad(el){var fl=fieldOf(el);if(fl)fl.classList.remove('invalid');}
     function markBad(el){var fl=fieldOf(el);if(fl)fl.classList.add('invalid');}
@@ -731,7 +757,8 @@
       state.country=li.dataset.name;state.code=li.dataset.code;state.sym=li.dataset.sym;
       valFlag.textContent=li.dataset.flag;valText.textContent=li.dataset.name;curSym.textContent=li.dataset.sym;
       list.querySelectorAll('li').forEach(function(x){x.setAttribute('aria-selected','false');});
-      li.setAttribute('aria-selected','true');drop.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
+      li.setAttribute('aria-selected','true');drop.classList.remove('open');btn.setAttribute('aria-expanded','false');
+      applyCountryUI();});});
     document.addEventListener('click',function(e){if(!drop.contains(e.target)){drop.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'){drop.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
 
@@ -750,11 +777,18 @@
     }
 
     next.addEventListener('click',function(e){e.preventDefault();
+      if(state.country!=='India'){
+        var g=GATEWAYS[state.country];
+        if(g){window.open(g,'_blank','noopener');}
+        return;
+      }
       var v=parseFloat(amt.value);
       if(!v||v<=0){markBad(amt);amt.focus();return;}
       gotoStep(2);nameI.focus();});
 
     prev.addEventListener('click',function(e){e.preventDefault();gotoStep(1);});
+
+    applyCountryUI(); // set initial state (India: amount + "Next")
 
     pay.addEventListener('click',function(e){e.preventDefault();
       var ok=true,first=null;
